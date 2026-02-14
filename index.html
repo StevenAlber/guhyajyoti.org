@@ -1,1 +1,1065 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GUHYAJYOTI — Peidetud Valgus | Kätketty Valo</title>
+<meta name="description" content="Sri Vivek Ananda teadvuse valguse kanalite programmid. Shakti ärkamine, Shiva trajektoor, 7 valguse kanalit. Transformatsioon 2026.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --peach: #F4A87C;
+  --peach-light: #FCD4BC;
+  --peach-glow: #FFF0E6;
+  --coral: #E8876F;
+  --rose: #D4708F;
+  --rose-soft: #F2C4D0;
+  --lavender: #B8A9D4;
+  --lavender-soft: #E8E0F4;
+  --sage: #8CB89C;
+  --sage-soft: #D4E8DA;
+  --gold: #C9A355;
+  --gold-soft: #F0E4C8;
+  --cream: #FFFCF7;
+  --warm: #FFF8F2;
+  --sand: #F5EDE4;
+  --text-dark: #2C2434;
+  --text-medium: #5A4E66;
+  --text-soft: #8A7E96;
+  --white: #FFFFFF;
+}
 
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ===== FLOATING LIGHT ORBS ===== */
+.orbs { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.orb { position: absolute; border-radius: 50%; filter: blur(1px); animation: floatOrb linear infinite; opacity: 0; }
+@keyframes floatOrb {
+  0% { transform: translateY(110vh) rotate(0deg) scale(0.3); opacity: 0; }
+  15% { opacity: 0.6; }
+  85% { opacity: 0.6; }
+  100% { transform: translateY(-10vh) rotate(360deg) scale(1); opacity: 0; }
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+nav.scrolled {
+  background: rgba(255,252,247,0.94);
+  backdrop-filter: blur(24px);
+  padding: 12px 48px;
+  box-shadow: 0 4px 30px rgba(44,36,52,0.06);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400; font-size: 24px; letter-spacing: 5px;
+  color: var(--text-dark); text-decoration: none;
+}
+.nav-logo span { color: var(--peach); }
+.nav-right { display: flex; gap: 28px; align-items: center; list-style: none; }
+.nav-right a {
+  color: var(--text-soft); text-decoration: none; font-size: 12px;
+  font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-right a:hover { color: var(--coral); }
+.nav-cta {
+  padding: 9px 22px !important;
+  background: linear-gradient(135deg, var(--peach), var(--coral)) !important;
+  color: var(--white) !important; border-radius: 50px;
+  transition: all 0.3s !important;
+}
+.nav-cta:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 24px rgba(244,168,124,0.35) !important; }
+
+/* LANG SWITCH */
+.lang-switch {
+  display: flex; gap: 0; border: 1.5px solid rgba(44,36,52,0.12);
+  border-radius: 50px; overflow: hidden;
+}
+.lang-btn {
+  padding: 6px 14px; font-size: 11px; font-weight: 500;
+  letter-spacing: 1px; cursor: pointer; border: none; background: transparent;
+  color: var(--text-soft); transition: all 0.3s; font-family: 'Outfit', sans-serif;
+}
+.lang-btn.active {
+  background: linear-gradient(135deg, var(--peach), var(--coral));
+  color: var(--white);
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; padding: 140px 24px 100px;
+  background: linear-gradient(180deg, var(--warm) 0%, var(--cream) 55%, var(--lavender-soft) 100%);
+  overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -20%; right: -10%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(244,168,124,0.18) 0%, transparent 70%);
+  border-radius: 50%; animation: heroGlow 8s ease-in-out infinite alternate;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -10%; left: -5%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(184,169,212,0.18) 0%, transparent 70%);
+  border-radius: 50%; animation: heroGlow 10s ease-in-out 2s infinite alternate;
+}
+@keyframes heroGlow { from { transform: scale(1) translate(0,0); } to { transform: scale(1.15) translate(20px,-15px); } }
+
+.guru-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 24px;
+  background: rgba(244,168,124,0.12); border: 1px solid rgba(244,168,124,0.25);
+  border-radius: 50px; font-size: 12px; font-weight: 400;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--coral);
+  margin-bottom: 36px; position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+}
+.guru-badge::before { content: '☼'; font-size: 14px; }
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: clamp(42px, 7vw, 84px); line-height: 1.08;
+  letter-spacing: -1px; margin-bottom: 28px;
+  position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
+}
+.hero h1 em {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(135deg, var(--peach) 0%, var(--coral) 50%, var(--rose) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub {
+  font-size: 15px; font-weight: 300; line-height: 1.9;
+  max-width: 560px; color: var(--text-soft);
+  margin-bottom: 40px; position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards;
+}
+.hero-buttons {
+  display: flex; gap: 14px; position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards;
+}
+.btn-primary {
+  display: inline-block; padding: 15px 40px;
+  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 400;
+  letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none;
+  color: var(--white); background: linear-gradient(135deg, var(--peach), var(--coral));
+  border-radius: 50px; transition: all 0.4s ease;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(232,135,111,0.35); }
+.btn-secondary {
+  display: inline-block; padding: 15px 40px;
+  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 400;
+  letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none;
+  color: var(--text-medium); border: 1.5px solid rgba(44,36,52,0.15);
+  border-radius: 50px; transition: all 0.4s ease;
+}
+.btn-secondary:hover { border-color: var(--peach); color: var(--coral); transform: translateY(-2px); }
+
+.hero-trust {
+  margin-top: 56px; display: flex; align-items: center; gap: 28px;
+  position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.8s ease 1s forwards;
+}
+.trust-item { text-align: center; }
+.trust-number { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500; color: var(--text-dark); }
+.trust-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-soft); margin-top: 2px; }
+.trust-divider { width: 1px; height: 32px; background: rgba(44,36,52,0.12); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== SECTIONS ===== */
+section { position: relative; z-index: 1; padding: 120px 24px; }
+.section-tag {
+  display: inline-block; padding: 6px 18px;
+  background: rgba(244,168,124,0.1); border-radius: 50px;
+  font-size: 11px; font-weight: 400; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--coral); margin-bottom: 18px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: clamp(32px, 4.5vw, 50px); line-height: 1.15; margin-bottom: 18px;
+}
+.section-title em { font-style: italic; font-weight: 400; color: var(--coral); }
+.section-desc { max-width: 560px; color: var(--text-soft); font-weight: 300; line-height: 1.9; font-size: 15px; }
+.centered { text-align: center; }
+.centered .section-desc { margin: 0 auto; }
+
+/* ===== GURU ===== */
+.about-guru { background: var(--cream); }
+.guru-layout { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.guru-visual { position: relative; }
+.guru-image-frame {
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, var(--peach-glow) 0%, var(--lavender-soft) 50%, var(--sage-soft) 100%);
+  border-radius: 200px 200px 40px 40px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.guru-image-frame::before {
+  content: ''; position: absolute; inset: 8px;
+  border: 1px solid rgba(244,168,124,0.25);
+  border-radius: 196px 196px 36px 36px;
+}
+.guru-symbol { font-size: 72px; color: var(--peach); opacity: 0.4; }
+.guru-float-card {
+  position: absolute; bottom: -16px; right: -16px;
+  background: var(--white); padding: 16px 24px; border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(44,36,52,0.08);
+  display: flex; align-items: center; gap: 12px;
+}
+.guru-float-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--peach-glow), var(--peach-light));
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.guru-float-text { font-size: 12px; font-weight: 500; color: var(--text-dark); }
+.guru-float-sub { font-size: 11px; color: var(--text-soft); font-weight: 300; }
+.guru-content { padding: 16px 0; }
+.guru-lineage {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin: 24px 0 16px; font-size: 12px; color: var(--text-soft); letter-spacing: 0.5px;
+}
+.guru-lineage strong { color: var(--text-medium); font-weight: 500; }
+.guru-lineage .arrow { color: var(--peach); }
+.guru-quote {
+  font-family: 'Cormorant Garamond', serif; font-size: 20px;
+  font-style: italic; font-weight: 400; line-height: 1.7;
+  color: var(--text-medium); margin: 24px 0;
+  padding-left: 22px; border-left: 3px solid var(--peach-light);
+}
+.guru-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.guru-tag { padding: 5px 14px; background: var(--sand); border-radius: 50px; font-size: 11px; color: var(--text-medium); font-weight: 400; }
+
+/* ===== PROGRAMS ===== */
+.programs { background: linear-gradient(180deg, var(--cream) 0%, var(--warm) 50%, var(--cream) 100%); }
+.programs-header { text-align: center; margin-bottom: 64px; }
+.programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1080px; margin: 0 auto; }
+.program-card {
+  background: var(--white); border-radius: 22px; padding: 36px 28px;
+  border: 1.5px solid rgba(44,36,52,0.06);
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  position: relative; overflow: hidden;
+}
+.program-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  border-radius: 22px 22px 0 0; opacity: 0; transition: opacity 0.4s ease;
+}
+.program-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(44,36,52,0.08); border-color: transparent; }
+.program-card:hover::before { opacity: 1; }
+.program-card.shakti::before { background: linear-gradient(90deg, var(--rose), var(--peach)); }
+.program-card.shiva::before { background: linear-gradient(90deg, var(--lavender), var(--sage)); }
+.program-card.jyoti::before { background: linear-gradient(90deg, var(--peach), var(--gold)); }
+
+.program-icon-wrap {
+  width: 56px; height: 56px; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 20px;
+}
+.shakti .program-icon-wrap { background: linear-gradient(135deg, #FDE8E0, #F8D0D8); }
+.shiva .program-icon-wrap { background: linear-gradient(135deg, #E8E0F4, #D4E8DA); }
+.jyoti .program-icon-wrap { background: linear-gradient(135deg, #FFF0E6, #F0E4C8); }
+
+.program-badge {
+  display: inline-block; padding: 4px 12px; border-radius: 50px;
+  font-size: 10px; font-weight: 500; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.shakti .program-badge { background: rgba(212,112,143,0.1); color: var(--rose); }
+.shiva .program-badge { background: rgba(184,169,212,0.15); color: var(--lavender); }
+.jyoti .program-badge { background: rgba(201,163,85,0.12); color: var(--gold); }
+
+.program-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; margin-bottom: 6px; line-height: 1.2; }
+.program-sanskrit { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--text-soft); margin-bottom: 16px; }
+.program-desc { font-size: 13px; color: var(--text-soft); line-height: 1.8; margin-bottom: 20px; font-weight: 300; }
+.program-features { list-style: none; margin-bottom: 24px; }
+.program-features li { font-size: 12px; color: var(--text-medium); padding: 5px 0; display: flex; align-items: center; gap: 8px; }
+.program-features li::before { content: '✦'; font-size: 7px; color: var(--peach); }
+.program-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(44,36,52,0.06); }
+.program-price { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--text-dark); }
+.program-price span { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 300; color: var(--text-soft); }
+.program-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 8px 20px; border-radius: 50px; font-size: 11px;
+  letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: all 0.3s;
+}
+.shakti .program-link { background: rgba(212,112,143,0.08); color: var(--rose); }
+.shiva .program-link { background: rgba(184,169,212,0.1); color: var(--lavender); }
+.jyoti .program-link { background: rgba(244,168,124,0.1); color: var(--coral); }
+.program-link:hover { transform: translateX(4px); }
+.program-link::after { content: '→'; }
+
+/* ===== CHANNELS ===== */
+.channels { background: var(--white); }
+.channels-layout { max-width: 960px; margin: 0 auto; }
+.channel-row {
+  display: grid; grid-template-columns: 72px 1fr; gap: 28px;
+  padding: 36px 0; border-bottom: 1px solid rgba(44,36,52,0.06);
+  align-items: start; transition: all 0.3s ease;
+}
+.channel-row:hover { padding-left: 12px; }
+.channel-row:last-child { border-bottom: none; }
+.channel-number { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; color: var(--peach-light); line-height: 1; }
+.channel-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; margin-bottom: 6px; color: var(--text-dark); }
+.channel-text { font-size: 13px; color: var(--text-soft); line-height: 1.8; font-weight: 300; max-width: 680px; }
+
+/* ===== URGENCY ===== */
+.urgency {
+  background: linear-gradient(135deg, var(--peach-glow) 0%, var(--lavender-soft) 50%, var(--sage-soft) 100%);
+  text-align: center; padding: 130px 24px;
+}
+.urgency-inner { max-width: 700px; margin: 0 auto; }
+.urgency .section-title { font-size: clamp(30px, 4vw, 46px); margin-bottom: 24px; }
+.urgency-text { font-size: 16px; line-height: 2; color: var(--text-medium); font-weight: 300; margin-bottom: 36px; }
+.urgency-stats { display: flex; justify-content: center; gap: 48px; margin-top: 48px; }
+.urgency-stat { text-align: center; }
+.urgency-stat-number {
+  font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 500;
+  background: linear-gradient(135deg, var(--coral), var(--rose));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.urgency-stat-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-soft); margin-top: 4px; }
+
+/* ===== QUIZ CTA ===== */
+.quiz-section { background: var(--cream); text-align: center; padding: 100px 24px; }
+.quiz-box {
+  max-width: 560px; margin: 0 auto;
+  background: var(--white); border-radius: 24px; padding: 48px 40px;
+  box-shadow: 0 16px 60px rgba(44,36,52,0.06);
+  border: 1.5px solid rgba(244,168,124,0.12);
+}
+.quiz-icon { font-size: 48px; margin-bottom: 20px; display: block; }
+.quiz-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 500; margin-bottom: 12px; }
+.quiz-desc { font-size: 14px; color: var(--text-soft); line-height: 1.8; font-weight: 300; margin-bottom: 28px; }
+.quiz-features { display: flex; justify-content: center; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
+.quiz-feature { font-size: 12px; color: var(--text-medium); display: flex; align-items: center; gap: 6px; }
+.quiz-feature::before { content: '✦'; font-size: 8px; color: var(--peach); }
+
+/* ===== TESTIMONIALS ===== */
+.testimonials { background: var(--cream); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1080px; margin: 0 auto; }
+.test-card {
+  background: var(--white); border-radius: 18px; padding: 32px 24px;
+  border: 1px solid rgba(44,36,52,0.04); transition: all 0.3s ease;
+}
+.test-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(44,36,52,0.06); }
+.test-stars { color: var(--peach); font-size: 13px; letter-spacing: 3px; margin-bottom: 18px; }
+.test-text { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; line-height: 1.7; color: var(--text-medium); margin-bottom: 20px; }
+.test-author { display: flex; align-items: center; gap: 10px; }
+.test-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 500; color: var(--white);
+}
+.test-card:nth-child(1) .test-avatar { background: linear-gradient(135deg, var(--rose-soft), var(--rose)); }
+.test-card:nth-child(2) .test-avatar { background: linear-gradient(135deg, var(--lavender-soft), var(--lavender)); }
+.test-card:nth-child(3) .test-avatar { background: linear-gradient(135deg, var(--sage-soft), var(--sage)); }
+.test-name { font-size: 13px; font-weight: 500; color: var(--text-dark); }
+.test-role { font-size: 11px; color: var(--text-soft); }
+
+/* ===== SAFETY ===== */
+.safety { background: var(--white); }
+.safety-grid { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.safety-item {
+  padding: 24px; border-radius: 16px; background: var(--cream);
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.safety-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.safety-title { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+.safety-text { font-size: 12px; color: var(--text-soft); line-height: 1.7; font-weight: 300; }
+
+/* ===== FINAL CTA ===== */
+.final-cta {
+  background: var(--white); text-align: center; padding: 130px 24px;
+  position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(244,168,124,0.08) 0%, rgba(184,169,212,0.06) 40%, transparent 70%);
+  border-radius: 50%;
+}
+.free-offer {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 24px; background: var(--peach-glow); border-radius: 50px;
+  font-size: 12px; color: var(--coral); font-weight: 400; margin-bottom: 28px;
+}
+
+/* ===== PODCAST ===== */
+.podcast { background: var(--cream); text-align: center; }
+.podcast-card {
+  max-width: 640px; margin: 0 auto;
+  background: linear-gradient(135deg, var(--text-dark) 0%, #3D3148 100%);
+  border-radius: 24px; padding: 48px 40px; color: var(--white);
+}
+.podcast-card { position: relative; overflow: hidden; }
+.podcast-badge { display: inline-block; padding: 4px 14px; background: rgba(244,168,124,0.2); border-radius: 50px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--peach); margin-bottom: 20px; }
+
+/* GURU FRAME MANDALA */
+.guru-mandala {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 300px; height: 300px; pointer-events: none;
+}
+.g-ring {
+  position: absolute; top: 50%; left: 50%; border-radius: 50%;
+  border: 1px solid var(--peach); opacity: 0.35;
+  transform: translate(-50%, -50%);
+}
+.g-ring:nth-child(1) { width: 80px; height: 80px; animation: gPulse 5s ease-in-out infinite; }
+.g-ring:nth-child(2) { width: 130px; height: 130px; animation: gPulse 5s ease-in-out 0.8s infinite; border-style: dashed; opacity: 0.25; }
+.g-ring:nth-child(3) { width: 180px; height: 180px; animation: gPulse 5s ease-in-out 1.6s infinite; }
+.g-ring:nth-child(4) { width: 230px; height: 230px; animation: gPulse 5s ease-in-out 2.4s infinite; border-style: dashed; opacity: 0.2; }
+.g-ring:nth-child(5) { width: 280px; height: 280px; animation: gPulse 5s ease-in-out 3.2s infinite; opacity: 0.15; }
+.g-spin {
+  position: absolute; top: 50%; left: 50%; border-radius: 50%;
+  border: 1px solid var(--coral); opacity: 0.2;
+  transform: translate(-50%, -50%);
+}
+.g-spin:nth-child(6) { width: 110px; height: 110px; animation: gSpin 25s linear infinite; border-style: dotted; }
+.g-spin:nth-child(7) { width: 200px; height: 200px; animation: gSpin 35s linear infinite reverse; border-style: dotted; }
+.g-spin:nth-child(8) { width: 260px; height: 260px; animation: gSpin 45s linear infinite; border-style: dotted; opacity: 0.12; }
+.g-dots {
+  position: absolute; top: 50%; left: 50%; width: 280px; height: 280px;
+  transform: translate(-50%, -50%); animation: gSpin 20s linear infinite;
+}
+.g-dot {
+  position: absolute; width: 3px; height: 3px; border-radius: 50%;
+  background: var(--coral); opacity: 0.4;
+}
+.g-dot:nth-child(1) { top: 0; left: 50%; }
+.g-dot:nth-child(2) { top: 50%; right: 0; }
+.g-dot:nth-child(3) { bottom: 0; left: 50%; }
+.g-dot:nth-child(4) { top: 50%; left: 0; }
+.g-dot:nth-child(5) { top: 14%; left: 14%; }
+.g-dot:nth-child(6) { top: 14%; right: 14%; }
+.g-dot:nth-child(7) { bottom: 14%; right: 14%; }
+.g-dot:nth-child(8) { bottom: 14%; left: 14%; }
+.g-dots2 {
+  position: absolute; top: 50%; left: 50%; width: 160px; height: 160px;
+  transform: translate(-50%, -50%); animation: gSpin 15s linear infinite reverse;
+}
+.g-dot2 {
+  position: absolute; width: 2px; height: 2px; border-radius: 50%;
+  background: var(--lavender); opacity: 0.5;
+}
+.g-dot2:nth-child(1) { top: 0; left: 50%; }
+.g-dot2:nth-child(2) { top: 50%; right: 0; }
+.g-dot2:nth-child(3) { bottom: 0; left: 50%; }
+.g-dot2:nth-child(4) { top: 50%; left: 0; }
+.g-dot2:nth-child(5) { top: 10%; left: 10%; }
+.g-dot2:nth-child(6) { top: 10%; right: 10%; }
+.g-center {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Cormorant Garamond', serif; font-size: 28px;
+  color: var(--coral); opacity: 0.5; animation: gBreath 4s ease-in-out infinite;
+}
+@keyframes gPulse {
+  0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.04); }
+}
+@keyframes gSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes gBreath {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.08); }
+}
+.podcast-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; margin-bottom: 12px; position: relative; z-index: 2; }
+.podcast-desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.8; font-weight: 300; margin-bottom: 24px; position: relative; z-index: 2; }
+.podcast-platforms { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; position: relative; z-index: 2; }
+.podcast-platforms a {
+  padding: 8px 20px; border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50px; color: rgba(255,255,255,0.7); text-decoration: none;
+  font-size: 12px; letter-spacing: 1px; transition: all 0.3s;
+}
+.podcast-platforms a:hover { border-color: var(--peach); color: var(--peach); }
+
+/* ===== FOOTER ===== */
+footer {
+  position: relative; z-index: 1;
+  background: var(--text-dark); color: rgba(255,255,255,0.6);
+  padding: 56px 48px 28px;
+}
+.footer-top {
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px; padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand-name { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 20px; letter-spacing: 4px; color: var(--peach); margin-bottom: 12px; }
+.footer-brand-desc { font-size: 13px; line-height: 1.7; font-weight: 300; color: rgba(255,255,255,0.4); }
+.footer-col-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+.footer-col a { display: block; color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13px; font-weight: 300; padding: 3px 0; transition: color 0.3s; }
+.footer-col a:hover { color: var(--peach); }
+.footer-bottom { max-width: 1080px; margin: 20px auto 0; display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.25); }
+.footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
+.footer-bottom a:hover { color: var(--peach); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .programs-grid, .testimonials-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+  .guru-layout { grid-template-columns: 1fr; gap: 48px; }
+  .guru-content { text-align: center; }
+  .guru-lineage { justify-content: center; }
+  .guru-quote { border-left: none; padding-left: 0; text-align: center; border-top: 2px solid var(--peach-light); padding-top: 20px; }
+  .guru-tags { justify-content: center; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .urgency-stats { flex-wrap: wrap; gap: 28px; }
+  .safety-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 14px 16px; }
+  .nav-right .nav-link-item { display: none; }
+  section { padding: 80px 16px; }
+  .hero { padding: 120px 16px 80px; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .hero-trust { flex-wrap: wrap; justify-content: center; gap: 16px; }
+  .footer-top { grid-template-columns: 1fr; text-align: center; }
+  .footer-bottom { flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+  .channel-row { grid-template-columns: 1fr; gap: 8px; }
+  .channel-number { font-size: 28px; }
+  .quiz-box { padding: 36px 24px; }
+  .podcast-card { padding: 36px 24px; }
+}
+
+/* ===== HIDE LANG CONTENT ===== */
+[data-lang="fi"] { display: none; }
+body.lang-fi [data-lang="et"] { display: none; }
+body.lang-fi [data-lang="fi"] { display: block; }
+body.lang-fi span[data-lang="fi"],
+body.lang-fi em[data-lang="fi"],
+body.lang-fi div[data-lang="fi"],
+body.lang-fi a[data-lang="fi"],
+body.lang-fi p[data-lang="fi"],
+body.lang-fi h1[data-lang="fi"],
+body.lang-fi h2[data-lang="fi"],
+body.lang-fi h3[data-lang="fi"],
+body.lang-fi li[data-lang="fi"] { display: inline; }
+body.lang-fi div[data-lang="fi"],
+body.lang-fi p[data-lang="fi"],
+body.lang-fi section[data-lang="fi"],
+body.lang-fi ul[data-lang="fi"],
+body.lang-fi li[data-lang="fi"],
+body.lang-fi blockquote[data-lang="fi"] { display: block; }
+body.lang-fi .hero-buttons,
+body.lang-fi .hero-trust,
+body.lang-fi .guru-lineage,
+body.lang-fi .guru-tags,
+body.lang-fi .urgency-stats,
+body.lang-fi .quiz-features,
+body.lang-fi .podcast-platforms { display: flex; }
+body.lang-fi .programs-grid,
+body.lang-fi .testimonials-grid,
+body.lang-fi .safety-grid,
+body.lang-fi .footer-top { display: grid; }
+</style>
+</head>
+<body>
+
+<!-- ORBS -->
+<div class="orbs" id="orbs"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">GUHYA<span>JYOTI</span></a>
+  <ul class="nav-right">
+    <li class="nav-link-item"><a href="#guru" data-lang="et">Õpetaja</a><a href="#guru" data-lang="fi">Opettaja</a></li>
+    <li class="nav-link-item"><a href="#programmid" data-lang="et">Programmid</a><a href="#programmid" data-lang="fi">Ohjelmat</a></li>
+    <li class="nav-link-item"><a href="#kanalid" data-lang="et">7 kanalit</a><a href="#kanalid" data-lang="fi">7 kanavaa</a></li>
+    <li>
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('et')">ET</button>
+        <button class="lang-btn" onclick="setLang('fi')">FI</button>
+      </div>
+    </li>
+    <li><a href="#liitu" class="nav-cta" data-lang="et">Alusta</a><a href="#liitu" class="nav-cta" data-lang="fi">Aloita</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="guru-badge">
+    <span data-lang="et">Sri Vivek Ananda ametlikud programmid</span>
+    <span data-lang="fi">Sri Vivek Anandan viralliset ohjelmat</span>
+  </div>
+  <h1 data-lang="et">Ava oma teadvuse<br><em>peidetud valgus</em></h1>
+  <h1 data-lang="fi">Avaa tietoisuutesi<br><em>kätketty valo</em></h1>
+  <p class="hero-sub" data-lang="et">Iidse Vedanta traditsiooni seitsme valguskanali süsteem — loodud spetsiaalselt 2026. aasta väljakutsetele. Sügav tervenemine, teadlik ärkamine ja terviklik eneseleidmine Sri Vivek Ananda juhendamisel.</p>
+  <p class="hero-sub" data-lang="fi">Muinaisen Vedanta-perinteen 7 valokanavan järjestelmä — luotu erityisesti vuoden 2026 haasteisiin. Syvä parantuminen, tietoinen herääminen ja kokonaisvaltainen itsen löytäminen Sri Vivek Anandan ohjauksessa.</p>
+  <div class="hero-buttons">
+    <a href="#programmid" class="btn-primary" data-lang="et">Avasta programmid</a>
+    <a href="#programmid" class="btn-primary" data-lang="fi">Tutustu ohjelmiin</a>
+    <a href="#guru" class="btn-secondary" data-lang="et">Tutvu õpetajaga</a>
+    <a href="#guru" class="btn-secondary" data-lang="fi">Tutustu opettajaan</a>
+  </div>
+  <div class="hero-trust">
+    <div class="trust-item">
+      <div class="trust-number">47 000+</div>
+      <div class="trust-label" data-lang="et">Osalejat</div>
+      <div class="trust-label" data-lang="fi">Osallistujaa</div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <div class="trust-number">108</div>
+      <div class="trust-label" data-lang="et">Riiki</div>
+      <div class="trust-label" data-lang="fi">Maata</div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <div class="trust-number">4.9 ★</div>
+      <div class="trust-label" data-lang="et">Hinnang</div>
+      <div class="trust-label" data-lang="fi">Arvosana</div>
+    </div>
+  </div>
+</section>
+
+<!-- GURU -->
+<section class="about-guru" id="guru">
+  <div class="guru-layout">
+    <div class="guru-visual">
+      <div class="guru-image-frame">
+        <div class="guru-mandala">
+          <div class="g-ring"></div>
+          <div class="g-ring"></div>
+          <div class="g-ring"></div>
+          <div class="g-ring"></div>
+          <div class="g-ring"></div>
+          <div class="g-spin"></div>
+          <div class="g-spin"></div>
+          <div class="g-spin"></div>
+          <div class="g-dots"><div class="g-dot"></div><div class="g-dot"></div><div class="g-dot"></div><div class="g-dot"></div><div class="g-dot"></div><div class="g-dot"></div><div class="g-dot"></div><div class="g-dot"></div></div>
+          <div class="g-dots2"><div class="g-dot2"></div><div class="g-dot2"></div><div class="g-dot2"></div><div class="g-dot2"></div><div class="g-dot2"></div><div class="g-dot2"></div></div>
+          <div class="g-center">✦</div>
+        </div>
+      </div>
+      <div class="guru-float-card">
+        <div class="guru-float-icon">🕉</div>
+        <div>
+          <div class="guru-float-text" data-lang="et">Podcast saadaval</div>
+          <div class="guru-float-text" data-lang="fi">Podcast saatavilla</div>
+          <div class="guru-float-sub" data-lang="et">Kuula inglise keeles</div>
+          <div class="guru-float-sub" data-lang="fi">Kuuntele englanniksi</div>
+        </div>
+      </div>
+    </div>
+    <div class="guru-content">
+      <div class="section-tag" data-lang="et">Õpetaja</div>
+      <div class="section-tag" data-lang="fi">Opettaja</div>
+      <h2 class="section-title">Sri Vivek <em>Ananda</em></h2>
+      <p class="section-desc" data-lang="et">Ramakrishna ordust pärit vaimne õpetaja, Swami Prakashananda (1874–1927) isiklik õpilane. Kolm aastakümmet vaikset praktikat Himaalaja mägismaastikul. 1960-ndatel avastas teda väike ring Lääne intellektuaale. Täna juhendab ta vaikselt maailma mõjukaimate inimeste teadvuse arengut — ilma meedia ja avaliku tähelepanuta.</p>
+      <p class="section-desc" data-lang="fi">Ramakrishna-järjestöstä lähtöisin oleva henkinen opettaja, Swami Prakashanandan (1874–1927) henkilökohtainen oppilas. Kolme vuosikymmentä hiljaista harjoitusta Himalajan vuoristossa. 1960-luvulla hänet löysi pieni länsimaisten ajattelijoiden piiri. Nykyään hän ohjaa hiljaisesti maailman vaikutusvaltaisimpien ihmisten tietoisuuden kehitystä — ilman mediaa ja julkista huomiota.</p>
+      <div class="guru-lineage">
+        <strong>Ramakrishna</strong> <span class="arrow">→</span>
+        <strong>Vivekananda</strong> <span class="arrow">→</span>
+        <strong>Prakashananda</strong> <span class="arrow">→</span>
+        <strong style="color:var(--coral)">Sri Vivek Ananda</strong>
+      </div>
+      <blockquote class="guru-quote" data-lang="et">"Iga inimese sees põleb valgus, mis on vanem kui tähed. 2026. aasta energiad nõuavad, et sa enam ei peida seda — vaid et sa saad selleks valguseks."</blockquote>
+      <blockquote class="guru-quote" data-lang="fi">"Jokaisen ihmisen sisällä palaa valo, joka on tähtiä vanhempi. Vuoden 2026 energiat vaativat, ettet enää piilota sitä — vaan että sinusta tulee se valo."</blockquote>
+      <div class="guru-tags">
+        <span class="guru-tag">Vedanta</span>
+        <span class="guru-tag">Kundalini</span>
+        <span class="guru-tag">Tantra</span>
+        <span class="guru-tag" data-lang="et">7 valguse kanalit</span>
+        <span class="guru-tag" data-lang="fi">7 valokanavaa</span>
+        <span class="guru-tag" data-lang="et">Hingamisteraapia</span>
+        <span class="guru-tag" data-lang="fi">Hengitysterapia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programmid">
+  <div class="programs-header centered">
+    <div class="section-tag">2026</div>
+    <h2 class="section-title" data-lang="et">Kolm teekonda <em>transformatsiooni</em></h2>
+    <h2 class="section-title" data-lang="fi">Kolme polkua <em>muodonmuutokseen</em></h2>
+    <p class="section-desc" data-lang="et">Iga programm vastab praeguse aja energeetilistele muutustele — geopoliitiline pinge, infoväsimus ja sisemine ärevus nõuavad uut tüüpi tervendamist.</p>
+    <p class="section-desc" data-lang="fi">Jokainen ohjelma vastaa nykyajan energeettisiin muutoksiin — geopoliittinen jännite, informaatioväsymys ja sisäinen ahdistus vaativat uudenlaista parantumista.</p>
+  </div>
+  <div class="programs-grid">
+    <!-- SHAKTI -->
+    <div class="program-card shakti">
+      <div class="program-icon-wrap">☽</div>
+      <div class="program-badge" data-lang="et">Naistele</div>
+      <div class="program-badge" data-lang="fi">Naisille</div>
+      <h3 class="program-name" data-lang="et">Shakti ärkamine</h3>
+      <h3 class="program-name" data-lang="fi">Shakti-herääminen</h3>
+      <p class="program-sanskrit" data-lang="et">Püha naiselikkuse ja loomejõu vabastamine</p>
+      <p class="program-sanskrit" data-lang="fi">Pyhän naisellisuuden ja luovan voiman vapauttaminen</p>
+      <p class="program-desc" data-lang="et">12-nädalane süvaprogramm, mis äratab sinu loomuliku Shakti jõu. Tantra hingamistehnikad, kehatarkuse praktikad ja loomingulise energia transformeerimine.</p>
+      <p class="program-desc" data-lang="fi">12 viikon syväohjelma, joka herättää luonnollisen Shakti-voimasi. Tantra-hengitystekniikat, kehotietoisuuden harjoitukset ja luovan energian muuntaminen.</p>
+      <ul class="program-features" data-lang="et">
+        <li>Igakuine live-tsükkel päikesekalendri järgi</li>
+        <li>Kreatiivse energia sublimeerimine</li>
+        <li>Kehateadlikkuse ja sensuse praktikad</li>
+        <li>Naisringid ja hingeperekonna tugi</li>
+        <li>Isiklik energeetiline kaardistus</li>
+      </ul>
+      <ul class="program-features" data-lang="fi">
+        <li>Kuukausittainen live-sykli aurinkokalenterin mukaan</li>
+        <li>Luovan energian sublimointi</li>
+        <li>Kehotietoisuuden ja aistillisuuden harjoitukset</li>
+        <li>Naispiirit ja sieluperheen tuki</li>
+        <li>Henkilökohtainen energeettinen kartoitus</li>
+      </ul>
+      <div class="program-footer">
+        <div class="program-price">€497 <span data-lang="et">/ 12 nädalat</span><span data-lang="fi">/ 12 viikkoa</span></div>
+        <a href="#" class="program-link" data-lang="et">Avasta</a>
+        <a href="#" class="program-link" data-lang="fi">Tutustu</a>
+      </div>
+    </div>
+    <!-- SHIVA -->
+    <div class="program-card shiva">
+      <div class="program-icon-wrap">☉</div>
+      <div class="program-badge" data-lang="et">Meestele</div>
+      <div class="program-badge" data-lang="fi">Miehille</div>
+      <h3 class="program-name" data-lang="et">Shiva trajektoor</h3>
+      <h3 class="program-name" data-lang="fi">Shiva-liikerata</h3>
+      <p class="program-sanskrit" data-lang="et">Teadliku mehelikkuse ja sisemise sõdalase äratamine</p>
+      <p class="program-sanskrit" data-lang="fi">Tietoisen maskuliinisuuden ja sisäisen soturin herättäminen</p>
+      <p class="program-desc" data-lang="et">10-nädalane maskuliinse energia meisterlikkuse programm. Kundalini tõus, fookuse treening, isa-arhetüübi tervendamine ning vaikse jõu kultiveerimine.</p>
+      <p class="program-desc" data-lang="fi">10 viikon maskuliinisen energian mestaruusohjelma. Kundalini-nousu, keskittymisharjoittelu, isä-arkkityypin parantaminen ja hiljaisen voiman viljely.</p>
+      <ul class="program-features" data-lang="et">
+        <li>Kundalini energia tõusu juhendamine</li>
+        <li>Mehelikkuse arhetüübid ja varjutöö</li>
+        <li>Vaikse jõu ja kohalolu praktikad</li>
+        <li>Meeste ring ja vastutuse treening</li>
+        <li>Vitaalsuse ja elujõu protokollid</li>
+      </ul>
+      <ul class="program-features" data-lang="fi">
+        <li>Kundalini-energian nousun ohjaus</li>
+        <li>Maskuliinisuuden arkkityypit ja varjotyö</li>
+        <li>Hiljaisen voiman ja läsnäolon harjoitukset</li>
+        <li>Miespiiri ja vastuullisuuden harjoittelu</li>
+        <li>Vitaalisuuden ja elinvoiman protokollat</li>
+      </ul>
+      <div class="program-footer">
+        <div class="program-price">€447 <span data-lang="et">/ 10 nädalat</span><span data-lang="fi">/ 10 viikkoa</span></div>
+        <a href="#" class="program-link" data-lang="et">Avasta</a>
+        <a href="#" class="program-link" data-lang="fi">Tutustu</a>
+      </div>
+    </div>
+    <!-- JYOTI -->
+    <div class="program-card jyoti">
+      <div class="program-icon-wrap">✦</div>
+      <div class="program-badge" data-lang="et">Kõigile</div>
+      <div class="program-badge" data-lang="fi">Kaikille</div>
+      <h3 class="program-name" data-lang="et">Jyoti valgus</h3>
+      <h3 class="program-name" data-lang="fi">Jyoti-valo</h3>
+      <p class="program-sanskrit" data-lang="et">Seitsme teadvusekanali avamine ja valguskehade aktiveerimine</p>
+      <p class="program-sanskrit" data-lang="fi">7 tietoisuuskanavan avaaminen ja valokehon aktivointi</p>
+      <p class="program-desc" data-lang="et">Sri Vivek Ananda signatuurprogramm — 8 nädalat süstemaatilist tööd seitsme valguskanaliga. Meditatsiooni alused, energiakeha aktiveerimine ja valguskoodide häälestamine.</p>
+      <p class="program-desc" data-lang="fi">Sri Vivek Anandan allekirjoitusohjelma — 8 viikkoa systemaattista työtä 7 valokanavan kanssa. Meditaation perusteet, energiakehon aktivointi ja valokoodien virittäminen.</p>
+      <ul class="program-features" data-lang="et">
+        <li>Seitsme valguskanali järjestikune avamine</li>
+        <li>Igapäevased juhendatud meditatsioonid</li>
+        <li>Energiakeha diagnostika ja puhastus</li>
+        <li>Sertifikaat ja pääs jätkuprogrammi</li>
+        <li>Eluaegne ligipääs materjalidele</li>
+      </ul>
+      <ul class="program-features" data-lang="fi">
+        <li>7 valokanavan vaiheittainen avaaminen</li>
+        <li>Päivittäiset ohjatut meditaatiot</li>
+        <li>Energiakehon diagnostiikka ja puhdistus</li>
+        <li>Sertifikaatti ja jatko-ohjelman pääsy</li>
+        <li>Elinikäinen pääsy materiaaleihin</li>
+      </ul>
+      <div class="program-footer">
+        <div class="program-price">€349 <span data-lang="et">/ 8 nädalat</span><span data-lang="fi">/ 8 viikkoa</span></div>
+        <a href="#" class="program-link" data-lang="et">Avasta</a>
+        <a href="#" class="program-link" data-lang="fi">Tutustu</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 CHANNELS -->
+<section class="channels" id="kanalid">
+  <div class="channels-layout">
+    <div class="centered" style="margin-bottom:64px;">
+      <div class="section-tag" data-lang="et">Sri Vivek Ananda süsteem</div>
+      <div class="section-tag" data-lang="fi">Sri Vivek Anandan järjestelmä</div>
+      <h2 class="section-title" data-lang="et">7 teadvuse <em>valguse kanalit</em></h2>
+      <h2 class="section-title" data-lang="fi">7 tietoisuuden <em>valokanavaa</em></h2>
+      <p class="section-desc" data-lang="et">Iga kanal avab ligipääsu teadvuse uuele kihile. Järjestikune aktiveerimine loob tervikliku transformatsiooni — kehast vaimuni.</p>
+      <p class="section-desc" data-lang="fi">Jokainen kanava avaa pääsyn tietoisuuden uudelle kerrokselle. Vaiheittainen aktivointi luo kokonaisvaltaisen muodonmuutoksen — kehosta henkeen.</p>
+    </div>
+    <div class="channel-row"><div class="channel-number">01</div><div><div class="channel-title">Muldhaara</div><div class="channel-text" data-lang="et">Juurdumise valgus — kehaühendus ja turvatunde taastamine. Hirmu vabastamine rakutasandil. Aluspõhi kogu transformatsioonile.</div><div class="channel-text" data-lang="fi">Juurtumisen valo — kehoyhteys ja turvallisuuden tunteen palauttaminen. Pelon vapauttaminen solutasolla. Perusta kaikelle muutokselle.</div></div></div>
+    <div class="channel-row"><div class="channel-number">02</div><div><div class="channel-title">Svadhisthana</div><div class="channel-text" data-lang="et">Loova tule valgus — loomingulise energia vabastamine ja teadlik suunamine. Häbi ja süü mustrite lahustamine.</div><div class="channel-text" data-lang="fi">Luovan tulen valo — luovan energian vapauttaminen ja tietoinen ohjaaminen. Häpeän ja syyllisyyden kaavojen liuottaminen.</div></div></div>
+    <div class="channel-row"><div class="channel-number">03</div><div><div class="channel-title">Manipuura</div><div class="channel-text" data-lang="et">Sisemise päikese valgus — tahtejõu ja isikliku väe aktiveerimine. Sisemine sõdalane ärkab — vaikne jõud, mis ei vaja kellegi heakskiitu.</div><div class="channel-text" data-lang="fi">Sisäisen auringon valo — tahdonvoiman ja henkilökohtaisen voiman aktivointi. Sisäinen soturi herää — hiljainen voima, joka ei tarvitse kenenkään hyväksyntää.</div></div></div>
+    <div class="channel-row"><div class="channel-number">04</div><div><div class="channel-title">Anaahata</div><div class="channel-text" data-lang="et">Südame sügav valgus — tingimusteta armastuse kanali avamine. Suhtehaavade tervendamine. Südame intelligentsus kui elu juhtimise keskus.</div><div class="channel-text" data-lang="fi">Sydämen syvä valo — ehdottoman rakkauden kanavan avaaminen. Suhdehaavojen parantaminen. Sydämen äly elämän ohjauskeskuksena.</div></div></div>
+    <div class="channel-row"><div class="channel-number">05</div><div><div class="channel-title">Vishuddhi</div><div class="channel-text" data-lang="et">Tõe hääle valgus — autentse eneseväljenduse vabastamine. Sinu tõeline hääl leiab koha maailmas.</div><div class="channel-text" data-lang="fi">Totuuden äänen valo — aidon itseilmaisun vapauttaminen. Todellinen äänesi löytää paikkansa maailmassa.</div></div></div>
+    <div class="channel-row"><div class="channel-number">06</div><div><div class="channel-title">Ajna</div><div class="channel-text" data-lang="et">Sisemise nägemise valgus — intuitiivse tajumise süvenemine. Nähtamatu maailma lugemine ja energiamustrite tajumine.</div><div class="channel-text" data-lang="fi">Sisäisen näkemisen valo — intuitiivisen hahmottamisen syveneminen. Näkymättömän maailman lukeminen ja energiakuvioiden aistiminen.</div></div></div>
+    <div class="channel-row"><div class="channel-number">07</div><div><div class="channel-title">Sahasraara</div><div class="channel-text" data-lang="et">Kosmilise ühtsuse valgus — ühendus kõrgema teadvuse ja kosmilise allikaga. Siin algab tõeline valguskeha aktiveerimine ja vaimne suveräänasus.</div><div class="channel-text" data-lang="fi">Kosmisen ykseyden valo — yhteys korkeampaan tietoisuuteen ja kosmiseen lähteeseen. Tästä alkaa todellinen valokehon aktivointi ja henkinen suvereniteetti.</div></div></div>
+  </div>
+</section>
+
+<!-- URGENCY 2026 -->
+<section class="urgency">
+  <div class="urgency-inner">
+    <div class="section-tag" data-lang="et">Miks just praegu?</div>
+    <div class="section-tag" data-lang="fi">Miksi juuri nyt?</div>
+    <h2 class="section-title" data-lang="et">2026 — aasta, mil <em>vana maailm</em> vajab uut valgust</h2>
+    <h2 class="section-title" data-lang="fi">2026 — vuosi, jolloin <em>vanha maailma</em> tarvitsee uutta valoa</h2>
+    <p class="urgency-text" data-lang="et">Geopoliitiline pinge, tehisintellekti plahvatus, infoväsimus ja üha süvenev sisemise tühjuse tunne — 2026 ei ole tavaline aasta. Sri Vivek Ananda sõnul on see "suure häälestumise" aasta, kus miljonid inimesed tunnevad sisemist kutset ärgata oma tõelisele olemusele.</p>
+    <p class="urgency-text" data-lang="fi">Geopoliittinen jännite, tekoälyn räjähdys, informaatioväsymys ja syvenevä sisäisen tyhjyyden tunne — 2026 ei ole tavallinen vuosi. Sri Vivek Anandan mukaan tämä on "suuren virittäytymisen" vuosi, jolloin miljoonat ihmiset tuntevat sisäisen kutsun herätä todelliseen olemukseensa.</p>
+    <a href="#liitu" class="btn-primary" data-lang="et">Alusta oma teekonda</a>
+    <a href="#liitu" class="btn-primary" data-lang="fi">Aloita matkasi</a>
+    <div class="urgency-stats">
+      <div class="urgency-stat">
+        <div class="urgency-stat-number">73%</div>
+        <div class="urgency-stat-label" data-lang="et">Tunneb ärevust</div>
+        <div class="urgency-stat-label" data-lang="fi">Kokee ahdistusta</div>
+      </div>
+      <div class="urgency-stat">
+        <div class="urgency-stat-number">2.4×</div>
+        <div class="urgency-stat-label" data-lang="et">Meditatsiooni huvi kasv</div>
+        <div class="urgency-stat-label" data-lang="fi">Meditaation kiinnostuksen kasvu</div>
+      </div>
+      <div class="urgency-stat">
+        <div class="urgency-stat-number">89%</div>
+        <div class="urgency-stat-label" data-lang="et">Soovitab edasi</div>
+        <div class="urgency-stat-label" data-lang="fi">Suosittelee eteenpäin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section">
+  <div class="quiz-box">
+    <span class="quiz-icon">◈</span>
+    <h3 class="quiz-title" data-lang="et">Milline kanal on sul kinni?</h3>
+    <h3 class="quiz-title" data-lang="fi">Mikä kanava on sinulla tukossa?</h3>
+    <p class="quiz-desc" data-lang="et">Tee 2-minutiline enesetest ja saa isiklik soovitus, millise programmiga alustada. Lisaks saad 3 tasuta juhendatud praktikat ja energeetilise kaardistuse.</p>
+    <p class="quiz-desc" data-lang="fi">Tee 2 minuutin itsetesti ja saat henkilökohtaisen suosituksen, millä ohjelmalla aloittaa. Lisäksi saat 3 ilmaista ohjattua harjoitusta ja energeettisen kartoituksen.</p>
+    <div class="quiz-features">
+      <span class="quiz-feature" data-lang="et">7 küsimust</span>
+      <span class="quiz-feature" data-lang="fi">7 kysymystä</span>
+      <span class="quiz-feature" data-lang="et">Isiklik tulemus</span>
+      <span class="quiz-feature" data-lang="fi">Henkilökohtainen tulos</span>
+      <span class="quiz-feature" data-lang="et">3 tasuta praktikat</span>
+      <span class="quiz-feature" data-lang="fi">3 ilmaista harjoitusta</span>
+    </div>
+    <a href="#" class="btn-primary" data-lang="et">Tee test</a>
+    <a href="#" class="btn-primary" data-lang="fi">Tee testi</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="tagasiside">
+  <div class="centered" style="margin-bottom:56px;">
+    <div class="section-tag" data-lang="et">Lood</div>
+    <div class="section-tag" data-lang="fi">Tarinat</div>
+    <h2 class="section-title" data-lang="et">Nende elu <em>muutus</em></h2>
+    <h2 class="section-title" data-lang="fi">Heidän elämänsä <em>muuttui</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="test-card">
+      <div class="test-stars">★ ★ ★ ★ ★</div>
+      <p class="test-text" data-lang="et">"Shakti programm avas minus ukse, mille olemasolust ma ei teadnudki. Minu suhe oma kehaga, kogu mu elu energia — kõik muutus. Kõige sügavam kogemus, mis mul eales olnud."</p>
+      <p class="test-text" data-lang="fi">"Shakti-ohjelma avasi minussa oven, jonka olemassaolosta en tiennyt. Suhteeni kehooni, koko elämäni energia — kaikki muuttui. Syvin kokemus, mitä minulla on koskaan ollut."</p>
+      <div class="test-author">
+        <div class="test-avatar">K</div>
+        <div><div class="test-name">Katrin, 38</div><div class="test-role">Shakti — III</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★ ★ ★ ★ ★</div>
+      <p class="test-text" data-lang="et">"Tulin Shiva trajektoorile, sest tundsin, et olen mehena ära eksinud. Programm andis mulle tagasi minu selgroo. Mitte agressiooni — vaid vaikse jõu."</p>
+      <p class="test-text" data-lang="fi">"Tulin Shiva-ohjelmaan, koska tunsin eksyneeni miehenä. Ohjelma antoi minulle selkärankani takaisin. Ei aggressiota — vaan hiljaista voimaa."</p>
+      <div class="test-author">
+        <div class="test-avatar">M</div>
+        <div><div class="test-name">Margus, 44</div><div class="test-role">Shiva — V</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★ ★ ★ ★ ★</div>
+      <p class="test-text" data-lang="et">"Jyoti valguse programm oli nagu kojutulek. 7 kanali avamine andis mulle raami, mida olin otsinud 10 aastat. Valgus ei ole kuskil mujal — see on minu sees."</p>
+      <p class="test-text" data-lang="fi">"Jyoti-valo-ohjelma oli kuin kotiinpaluu. 7 kanavan avaaminen antoi minulle kehyksen, jota olin etsinyt 10 vuotta. Valo ei ole jossain muualla — se on minun sisälläni."</p>
+      <div class="test-author">
+        <div class="test-avatar">A</div>
+        <div><div class="test-name">Anneli, 52</div><div class="test-role">Jyoti — I</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section class="safety">
+  <div class="centered" style="margin-bottom:48px;">
+    <div class="section-tag" data-lang="et">Selge raam</div>
+    <div class="section-tag" data-lang="fi">Selkeä kehys</div>
+    <h2 class="section-title" data-lang="et">Aus ja <em>läbipaistev</em></h2>
+    <h2 class="section-title" data-lang="fi">Rehellinen ja <em>läpinäkyvä</em></h2>
+  </div>
+  <div class="safety-grid">
+    <div class="safety-item">
+      <span class="safety-icon">🛡</span>
+      <div>
+        <div class="safety-title" data-lang="et">Ei asenda meditsiini</div>
+        <div class="safety-title" data-lang="fi">Ei korvaa lääketiedettä</div>
+        <div class="safety-text" data-lang="et">See on praktikpõhine enesearendus. Tervisemuredega pöördu alati arsti poole.</div>
+        <div class="safety-text" data-lang="fi">Tämä on harjoituspohjaista itsensä kehittämistä. Terveyshuolissa käänny aina lääkärin puoleen.</div>
+      </div>
+    </div>
+    <div class="safety-item">
+      <span class="safety-icon">🔓</span>
+      <div>
+        <div class="safety-title" data-lang="et">Sinu autonoomia säilib</div>
+        <div class="safety-title" data-lang="fi">Autonomiasi säilyy</div>
+        <div class="safety-text" data-lang="et">Ei guru-kultust, ei survet, ei identiteedi pealesurumist. Sa otsustad ise oma tempo ja sügavuse.</div>
+        <div class="safety-text" data-lang="fi">Ei guru-kulttia, ei painetta, ei identiteetin pakottamista. Sinä päätät itse tahtisi ja syvyytesi.</div>
+      </div>
+    </div>
+    <div class="safety-item">
+      <span class="safety-icon">↩</span>
+      <div>
+        <div class="safety-title" data-lang="et">Lahku igal ajal</div>
+        <div class="safety-title" data-lang="fi">Lähde milloin tahansa</div>
+        <div class="safety-text" data-lang="et">Ligipääs materjalidele jääb alles ka pärast programmi lõppu. Raha tagasi 14 päeva jooksul.</div>
+        <div class="safety-text" data-lang="fi">Pääsy materiaaleihin säilyy myös ohjelman jälkeen. Rahat takaisin 14 päivän sisällä.</div>
+      </div>
+    </div>
+    <div class="safety-item">
+      <span class="safety-icon">🤝</span>
+      <div>
+        <div class="safety-title" data-lang="et">Kogukond, mitte sekt</div>
+        <div class="safety-title" data-lang="fi">Yhteisö, ei lahko</div>
+        <div class="safety-text" data-lang="et">Avatud Discord kogukond. Kord kuus live-sessioon. Sa ei ole üksi oma teekonnal.</div>
+        <div class="safety-text" data-lang="fi">Avoin Discord-yhteisö. Kerran kuussa live-sessio. Et ole yksin matkallasi.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PODCAST -->
+<section class="podcast">
+  <div class="podcast-card">
+    <div class="podcast-badge">Podcast</div>
+    <h3 class="podcast-title" data-lang="et">Guhyajyoti — Peidetud Valguse Podcast</h3>
+    <h3 class="podcast-title" data-lang="fi">Guhyajyoti — Kätketyn Valon Podcast</h3>
+    <p class="podcast-desc" data-lang="et">Sri Vivek Ananda õpetused inglise keeles. Iganädalased episoodid meditatsioonist, energeetikast ja teadlikust elamisest 2026. aasta kontekstis.</p>
+    <p class="podcast-desc" data-lang="fi">Sri Vivek Anandan opetukset englanniksi. Viikoittaiset jaksot meditaatiosta, energetiikasta ja tietoisesta elämisestä vuoden 2026 kontekstissa.</p>
+    <div class="podcast-platforms">
+      <a href="#">Spotify</a>
+      <a href="#">Apple Podcasts</a>
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="liitu">
+  <div class="free-offer" data-lang="et">Tasuta: 3 praktikat + 7-kanali enesetest + isiklik soovitus</div>
+  <div class="free-offer" data-lang="fi">Ilmainen: 3 harjoitusta + 7-kanavan itsetesti + henkilökohtainen suositus</div>
+  <h2 class="section-title" data-lang="et">Sinu peidetud valgus ootab.<br><em>Kas sina oled valmis?</em></h2>
+  <h2 class="section-title" data-lang="fi">Kätketty valosi odottaa.<br><em>Oletko sinä valmis?</em></h2>
+  <p class="section-desc centered" style="margin:0 auto 40px;" data-lang="et">Liitu tasuta algusprogrammiga ja koge Sri Vivek Ananda õpetuste transformeerivat jõudu. Esimene samm ei maksa midagi — peale julguse.</p>
+  <p class="section-desc centered" style="margin:0 auto 40px;" data-lang="fi">Liity ilmaiseen aloitusohjelmaan ja koe Sri Vivek Anandan opetusten muuttava voima. Ensimmäinen askel ei maksa mitään — paitsi rohkeutta.</p>
+  <a href="#" class="btn-primary" data-lang="et">Alusta tasuta teekonda</a>
+  <a href="#" class="btn-primary" data-lang="fi">Aloita ilmainen matkasi</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">GUHYAJYOTI</div>
+      <p class="footer-brand-desc" data-lang="et">Peidetud Valgus — Sri Vivek Ananda ametlik eesti- ja soomekeelne platvorm. Iidsed Vedanta tarkused kaasaegses vormis.</p>
+      <p class="footer-brand-desc" data-lang="fi">Kätketty Valo — Sri Vivek Anandan virallinen suomen- ja vironkielinen alusta. Muinaiset Vedanta-viisaudet nykyaikaisessa muodossa.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-lang="et">Programmid</div>
+      <div class="footer-col-title" data-lang="fi">Ohjelmat</div>
+      <a href="#" data-lang="et">Shakti ärkamine</a><a href="#" data-lang="fi">Shakti-herääminen</a>
+      <a href="#" data-lang="et">Shiva trajektoor</a><a href="#" data-lang="fi">Shiva-liikerata</a>
+      <a href="#" data-lang="et">Jyoti valgus</a><a href="#" data-lang="fi">Jyoti-valo</a>
+      <a href="#" data-lang="et">Tasuta algus</a><a href="#" data-lang="fi">Ilmainen aloitus</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-lang="et">Ressursid</div>
+      <div class="footer-col-title" data-lang="fi">Resurssit</div>
+      <a href="#">Podcast</a>
+      <a href="#" data-lang="et">Blogi</a><a href="#" data-lang="fi">Blogi</a>
+      <a href="#" data-lang="et">KKK</a><a href="#" data-lang="fi">UKK</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-lang="et">Ühendus</div>
+      <div class="footer-col-title" data-lang="fi">Yhteys</div>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="#">Discord</a>
+      <a href="#" data-lang="et">Kontakt</a><a href="#" data-lang="fi">Yhteystiedot</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Guhyajyoti · guhyajyoti.org</span>
+    <span><a href="#" data-lang="et">Privaatsus</a><a href="#" data-lang="fi">Tietosuoja</a> · <a href="#" data-lang="et">Tingimused</a><a href="#" data-lang="fi">Ehdot</a></span>
+  </div>
+</footer>
+
+<script>
+// Floating light orbs
+const orbsEl = document.getElementById('orbs');
+const colors = [
+  'rgba(244,168,124,0.4)','rgba(212,112,143,0.3)','rgba(184,169,212,0.35)',
+  'rgba(140,184,156,0.3)','rgba(201,163,85,0.35)','rgba(252,212,188,0.4)',
+];
+for (let i = 0; i < 22; i++) {
+  const o = document.createElement('div');
+  o.className = 'orb';
+  const size = Math.random() * 5 + 2;
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  o.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;background:${color};box-shadow:0 0 ${size*6}px ${color};animation-duration:${Math.random()*25+18}s;animation-delay:${Math.random()*25}s;`;
+  orbsEl.appendChild(o);
+}
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }, i * 60);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.program-card,.test-card,.channel-row,.guru-layout,.urgency-inner,.quiz-box,.safety-item,.podcast-card').forEach(el => {
+  el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
+  el.style.transition = 'all 0.7s cubic-bezier(0.4,0,0.2,1)'; obs.observe(el);
+});
+
+// Language switcher
+function setLang(lang) {
+  document.body.className = lang === 'fi' ? 'lang-fi' : '';
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+  });
+  document.documentElement.lang = lang;
+}
+</script>
+</body>
+</html>
