@@ -158,7 +158,7 @@ nav.scrolled {
   font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 400;
   letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none;
   color: var(--white); background: linear-gradient(135deg, var(--peach), var(--coral));
-  border-radius: 50px; transition: all 0.4s ease;
+  border-radius: 50px; transition: all 0.4s ease; border: none; cursor: pointer;
 }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(232,135,111,0.35); }
 .btn-secondary {
@@ -1201,10 +1201,10 @@ body.lang-fi .test-avatar[data-lang="et"] { display: none; }
     <div style="display:flex;justify-content:center;gap:24px;margin:20px 0;font-size:12px;color:var(--text-soft);">
       <span>◈ 15 min</span>
       <span data-lang="et">◈ Juhendatud</span><span data-lang="fi">◈ Ohjattu</span>
-      <span data-lang="et">◈ Silmad suletud</span><span data-lang="fi">◈ Silmät kiinni</span>
+      <span data-lang="et">◈ Silmad puhkavad</span><span data-lang="fi">◈ Silmät lepäävät</span>
     </div>
-    <button class="btn-primary" onclick="launchMeditation()" data-lang="et">Alusta meditatsiooni</button>
-    <button class="btn-primary" onclick="launchMeditation()" data-lang="fi">Aloita meditaatio</button>
+    <button class="btn-primary" onclick="launchMeditation()" data-lang="et">Alusta meditatsiooni ◈</button>
+    <button class="btn-primary" onclick="launchMeditation()" data-lang="fi">Aloita meditaatio ◈</button>
   </div>
 
   <!-- FULLSCREEN MEDITATION -->
@@ -1495,7 +1495,7 @@ const medPhases = {
   et: [
     // PHASE 1: ARRIVAL (0:00 - 3:00)
     { phase: 'Saabumine', bg: '#0a0a12', texts: [
-      { t: 'Leia mugav asend.\n\nSulge silmad.', d: 12000, inst: 'Lase kehal paika tulla...' },
+      { t: 'Leia mugav asend.\n\nLase pilgul pehmeks muutuda.\nVaata ekraani nagu vaataksid\nhorisonti kauguses.', d: 12000, inst: 'Lase kehal paika tulla...' },
       { t: 'Maailm jääb seisma.\n\nKõik, mis enne seda hetke oli —\ntöö, teised inimesed, kohustused —\nkõik see võib praegu oodata.', d: 16000, inst: '' },
       { t: 'Sa ei pea praegu mitte midagi tegema.\nMitte midagi saavutama.\nMitte midagi parandama.\n\nSee on haruldane luba, mille sa annad iseendale.', d: 16000, inst: '' },
       { t: 'Ainult olema.', d: 8000, inst: '' },
@@ -1555,14 +1555,14 @@ const medPhases = {
       { t: 'Tunne uuesti tooli enda all.\nTunne käsi.\nTunne jalgu.\nTunne, kuidas õhk puudutab sinu nahka.', d: 14000, inst: 'Aeglaselt...' },
       { t: 'Keha on sama —\naga midagi on muutunud.\n\nSa tead nüüd midagi,\nmida sa enne ei teadnud.\n\nSa tead, et valgus on sinu sees.', d: 16000, inst: '' },
       { t: 'See, mida sa just kogesid,\non ainult algus.\n\nSa avasid ühe kanali.\nSri Vivek Ananda süsteemis\non neid seitse — ja iga järgmine\nviib sind sügavamale\nkui sa kunagi arvasid võimalik olevat.', d: 18000, inst: '' },
-      { t: 'Kui oled valmis —\nava silmad.\n\nMaailm on sama.\nAga sina oled teistsugune.', d: 14000, inst: '' },
+      { t: 'Kui oled valmis —\ntõsta pilk.\nVaata ringi.\n\nMaailm on sama.\nAga sina oled teistsugune.', d: 14000, inst: '' },
       { t: '◈', d: 6000, inst: '' },
     ]}
   ],
   fi: [
     // PHASE 1: ARRIVAL
     { phase: 'Saapuminen', bg: '#0a0a12', texts: [
-      { t: 'Etsi mukava asento.\n\nSulje silmät.', d: 12000, inst: 'Anna kehon asettua...' },
+      { t: 'Etsi mukava asento.\n\nAnna katseen pehmentyä.\nKatso näyttöä kuin katselisit\nhorisonttia kaukaisuudessa.', d: 12000, inst: 'Anna kehon asettua...' },
       { t: 'Maailma pysähtyy.\n\nKaikki, mikä oli ennen tätä hetkeä —\ntyö, muut ihmiset, velvollisuudet —\nkaikki se voi nyt odottaa.', d: 16000, inst: '' },
       { t: 'Sinun ei tarvitse nyt tehdä mitään.\nSaavuttaa mitään.\nKorjata mitään.\n\nTämä on harvinainen lupa, jonka annat itsellesi.', d: 16000, inst: '' },
       { t: 'Vain olla.', d: 8000, inst: '' },
@@ -1622,7 +1622,7 @@ const medPhases = {
       { t: 'Tunne taas tuoli allasi.\nTunne kädet.\nTunne jalat.\nTunne, kuinka ilma koskettaa ihoasi.', d: 14000, inst: 'Hitaasti...' },
       { t: 'Keho on sama —\nmutta jokin on muuttunut.\n\nTiedät nyt jotain,\nmitä et tiennyt aiemmin.\n\nTiedät, että valo on sisälläsi.', d: 16000, inst: '' },
       { t: 'Se, mitä juuri koit,\non vasta alku.\n\nAvasit yhden kanavan.\nSri Vivek Anandan järjestelmässä\nniitä on seitsemän — ja jokainen seuraava\nvie sinut syvemmälle\nkuin koskaan uskoitkaan mahdolliseksi.', d: 18000, inst: '' },
-      { t: 'Kun olet valmis —\navaa silmät.\n\nMaailma on sama.\nMutta sinä olet toisenlainen.', d: 14000, inst: '' },
+      { t: 'Kun olet valmis —\nnosta katseesi.\nKatso ympärillesi.\n\nMaailma on sama.\nMutta sinä olet toisenlainen.', d: 14000, inst: '' },
       { t: '◈', d: 6000, inst: '' },
     ]}
   ]
