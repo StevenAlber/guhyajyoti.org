@@ -553,6 +553,165 @@ footer {
   .podcast-card { padding: 36px 24px; }
 }
 
+/* ===== CHANNEL ACCORDION ===== */
+.channel-row { cursor: pointer; }
+.channel-toggle { float: right; font-size: 18px; color: var(--peach); transition: transform 0.3s; font-weight: 300; }
+.channel-row.open .channel-toggle { transform: rotate(45deg); }
+.channel-deep {
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
+  font-size: 13px; color: var(--text-medium); line-height: 1.9; font-weight: 300;
+  margin-top: 0; padding-left: 0;
+  border-left: 2px solid transparent;
+}
+.channel-row.open .channel-deep {
+  max-height: 400px; opacity: 1; margin-top: 14px;
+  padding-left: 16px; border-left-color: var(--peach-light);
+}
+
+/* ===== QUIZ INTERACTIVE ===== */
+.quiz-progress { width: 100%; height: 4px; background: var(--sand); border-radius: 4px; margin-bottom: 28px; }
+.quiz-progress-bar { height: 100%; background: linear-gradient(90deg, var(--peach), var(--coral)); border-radius: 4px; transition: width 0.4s ease; width: 0%; }
+.quiz-q-number { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 12px; }
+.quiz-q-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; line-height: 1.4; margin-bottom: 28px; color: var(--text-dark); }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-opt {
+  padding: 14px 20px; border: 1.5px solid rgba(44,36,52,0.1);
+  border-radius: 14px; background: var(--white); cursor: pointer;
+  font-size: 14px; color: var(--text-medium); text-align: left;
+  transition: all 0.3s ease; font-family: 'Outfit', sans-serif;
+}
+.quiz-opt:hover { border-color: var(--peach); color: var(--coral); transform: translateX(4px); }
+.quiz-result-icon { font-size: 48px; margin-bottom: 16px; }
+.quiz-result-channel { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--coral); margin-bottom: 8px; }
+.quiz-result-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; margin-bottom: 16px; }
+.quiz-result-desc { font-size: 14px; color: var(--text-soft); line-height: 1.8; font-weight: 300; margin-bottom: 20px; max-width: 440px; margin-left: auto; margin-right: auto; }
+.quiz-result-rec { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 12px; }
+
+/* ===== IMMERSIVE MEDITATION ===== */
+.med-overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 99999; background: #0a0a12;
+  flex-direction: column; align-items: center; justify-content: center;
+  transition: background 8s ease;
+  overflow: hidden;
+}
+.med-overlay.active { display: flex; }
+body.med-active { overflow: hidden !important; position: fixed !important; width: 100% !important; height: 100% !important; }
+.med-particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+.med-particle {
+  position: absolute; border-radius: 50%; opacity: 0;
+  animation: medFloat 20s infinite ease-in-out;
+}
+@keyframes medFloat {
+  0% { opacity: 0; transform: translateY(100vh) scale(0.5); }
+  20% { opacity: 0.6; }
+  80% { opacity: 0.4; }
+  100% { opacity: 0; transform: translateY(-20vh) scale(1.2); }
+}
+.med-timer {
+  position: absolute; top: 24px; right: 28px;
+  font-family: 'Outfit', sans-serif; font-size: 13px;
+  color: rgba(255,255,255,0.2); letter-spacing: 1px;
+}
+.med-phase-label {
+  position: absolute; top: 24px; left: 28px;
+  font-family: 'Outfit', sans-serif; font-size: 11px;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.15);
+}
+.med-text-container {
+  position: relative; z-index: 2; text-align: center;
+  max-width: 600px; padding: 0 32px;
+}
+.med-text {
+  font-family: 'Cormorant Garamond', serif; font-size: 24px;
+  line-height: 1.7; color: rgba(255,255,255,0.85);
+  font-weight: 400; font-style: italic;
+  opacity: 0; transition: opacity 2.5s ease;
+  min-height: 120px; display: flex; align-items: center; justify-content: center;
+}
+.med-text.visible { opacity: 1; }
+.med-instruction {
+  font-family: 'Outfit', sans-serif; font-size: 13px;
+  color: rgba(255,255,255,0.3); letter-spacing: 1.5px;
+  margin-top: 28px; min-height: 24px;
+  opacity: 0; transition: opacity 2s ease;
+}
+.med-instruction.visible { opacity: 1; }
+.med-breath-indicator {
+  position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.med-breath-ring {
+  width: 280px; height: 280px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: all 4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 80px rgba(244,168,124,0.0);
+}
+.med-breath-ring.inhale {
+  width: 380px; height: 380px;
+  border-color: rgba(244,168,124,0.12);
+  box-shadow: 0 0 120px rgba(244,168,124,0.06);
+}
+.med-breath-ring.hold {
+  width: 380px; height: 380px;
+  border-color: rgba(212,175,55,0.12);
+  box-shadow: 0 0 120px rgba(212,175,55,0.06);
+}
+.med-breath-ring.exhale {
+  width: 280px; height: 280px;
+  border-color: rgba(178,200,187,0.08);
+  box-shadow: 0 0 80px rgba(178,200,187,0.04);
+}
+.med-progress {
+  position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+  background: rgba(255,255,255,0.05);
+}
+.med-progress-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, rgba(244,168,124,0.3), rgba(212,175,55,0.3));
+  transition: width 1s linear;
+}
+.med-skip {
+  position: absolute; bottom: 28px; right: 28px;
+  background: none; border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.2); padding: 8px 20px;
+  border-radius: 50px; font-family: 'Outfit', sans-serif;
+  font-size: 11px; letter-spacing: 1.5px; cursor: pointer;
+  transition: all 0.3s;
+}
+.med-skip:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.4); }
+
+/* ===== JOURNEY FEELINGS ===== */
+.journey-box {
+  max-width: 560px; margin: 32px auto 0; background: var(--white);
+  border-radius: 24px; padding: 40px 32px; text-align: center;
+  box-shadow: 0 16px 60px rgba(44,36,52,0.06);
+  border: 1.5px solid rgba(244,168,124,0.12);
+  position: relative; z-index: 1;
+}
+.journey-step-badge {
+  display: inline-block; padding: 5px 16px; background: rgba(244,168,124,0.1);
+  border-radius: 50px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 16px;
+}
+.journey-step-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; margin-bottom: 14px; }
+.journey-step-desc { font-size: 14px; color: var(--text-soft); line-height: 1.8; font-weight: 300; margin-bottom: 24px; max-width: 440px; margin-left: auto; margin-right: auto; }
+.journey-feelings { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+.feeling-btn {
+  padding: 16px; border: 1.5px solid rgba(44,36,52,0.08);
+  border-radius: 16px; background: var(--cream); cursor: pointer;
+  text-align: center; transition: all 0.3s; font-family: 'Outfit', sans-serif;
+  font-size: 13px; color: var(--text-medium); display: flex; flex-direction: column;
+  align-items: center; gap: 8px;
+}
+.feeling-btn:hover { border-color: var(--peach); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(44,36,52,0.06); }
+.feeling-btn.selected { border-color: var(--coral); background: var(--peach-glow); }
+.feeling-icon { font-size: 24px; }
+@media (max-width: 768px) { .journey-feelings { grid-template-columns: 1fr; } }
+
 /* ===== HIDE LANG CONTENT ===== */
 [data-lang="fi"] { display: none; }
 body.lang-fi [data-lang="et"] { display: none; }
@@ -820,13 +979,19 @@ body.lang-fi .test-avatar[data-lang="et"] { display: none; }
       <p class="section-desc" data-lang="et">Iga kanal avab ligipääsu teadvuse uuele kihile. Järjestikune aktiveerimine loob tervikliku transformatsiooni — kehast vaimuni.</p>
       <p class="section-desc" data-lang="fi">Jokainen kanava avaa pääsyn tietoisuuden uudelle kerrokselle. Vaiheittainen aktivointi luo kokonaisvaltaisen muodonmuutoksen — kehosta henkeen.</p>
     </div>
-    <div class="channel-row"><div class="channel-number">01</div><div><div class="channel-title">Muldhaara</div><div class="channel-text" data-lang="et">Juurdumise valgus — kehaühendus ja turvatunde taastamine. Hirmu vabastamine rakutasandil. Aluspõhi kogu transformatsioonile.</div><div class="channel-text" data-lang="fi">Juurtumisen valo — kehoyhteys ja turvallisuuden tunteen palauttaminen. Pelon vapauttaminen solutasolla. Perusta kaikelle muutokselle.</div></div></div>
-    <div class="channel-row"><div class="channel-number">02</div><div><div class="channel-title">Svadhisthana</div><div class="channel-text" data-lang="et">Loova tule valgus — loomingulise energia vabastamine ja teadlik suunamine. Häbi ja süü mustrite lahustamine.</div><div class="channel-text" data-lang="fi">Luovan tulen valo — luovan energian vapauttaminen ja tietoinen ohjaaminen. Häpeän ja syyllisyyden kaavojen liuottaminen.</div></div></div>
-    <div class="channel-row"><div class="channel-number">03</div><div><div class="channel-title">Manipuura</div><div class="channel-text" data-lang="et">Sisemise päikese valgus — tahtejõu ja isikliku väe aktiveerimine. Sisemine sõdalane ärkab — vaikne jõud, mis ei vaja kellegi heakskiitu.</div><div class="channel-text" data-lang="fi">Sisäisen auringon valo — tahdonvoiman ja henkilökohtaisen voiman aktivointi. Sisäinen soturi herää — hiljainen voima, joka ei tarvitse kenenkään hyväksyntää.</div></div></div>
-    <div class="channel-row"><div class="channel-number">04</div><div><div class="channel-title">Anaahata</div><div class="channel-text" data-lang="et">Südame sügav valgus — tingimusteta armastuse kanali avamine. Suhtehaavade tervendamine. Südame intelligentsus kui elu juhtimise keskus.</div><div class="channel-text" data-lang="fi">Sydämen syvä valo — ehdottoman rakkauden kanavan avaaminen. Suhdehaavojen parantaminen. Sydämen äly elämän ohjauskeskuksena.</div></div></div>
-    <div class="channel-row"><div class="channel-number">05</div><div><div class="channel-title">Vishuddhi</div><div class="channel-text" data-lang="et">Tõe hääle valgus — autentse eneseväljenduse vabastamine. Sinu tõeline hääl leiab koha maailmas.</div><div class="channel-text" data-lang="fi">Totuuden äänen valo — aidon itseilmaisun vapauttaminen. Todellinen äänesi löytää paikkansa maailmassa.</div></div></div>
-    <div class="channel-row"><div class="channel-number">06</div><div><div class="channel-title">Ajna</div><div class="channel-text" data-lang="et">Sisemise nägemise valgus — intuitiivse tajumise süvenemine. Nähtamatu maailma lugemine ja energiamustrite tajumine.</div><div class="channel-text" data-lang="fi">Sisäisen näkemisen valo — intuitiivisen hahmottamisen syveneminen. Näkymättömän maailman lukeminen ja energiakuvioiden aistiminen.</div></div></div>
-    <div class="channel-row"><div class="channel-number">07</div><div><div class="channel-title">Sahasraara</div><div class="channel-text" data-lang="et">Kosmilise ühtsuse valgus — ühendus kõrgema teadvuse ja kosmilise allikaga. Siin algab tõeline valguskeha aktiveerimine ja vaimne suveräänasus.</div><div class="channel-text" data-lang="fi">Kosmisen ykseyden valo — yhteys korkeampaan tietoisuuteen ja kosmiseen lähteeseen. Tästä alkaa todellinen valokehon aktivointi ja henkinen suvereniteetti.</div></div></div>
+    <div class="channel-row" onclick="toggleChannel(this)"><div class="channel-number">01</div><div><div class="channel-title">Muldhaara <span class="channel-toggle">+</span></div><div class="channel-text" data-lang="et">Juurdumise valgus — kehaühendus ja turvatunde taastamine. Hirmu vabastamine rakutasandil. Aluspõhi kogu transformatsioonile.</div><div class="channel-text" data-lang="fi">Juurtumisen valo — kehoyhteys ja turvallisuuden tunteen palauttaminen. Pelon vapauttaminen solutasolla. Perusta kaikelle muutokselle.</div><div class="channel-deep" data-lang="et">Muldhaara on sinu energiasüsteemi vundament — ilma selleta ei püsi ükski teine kanal stabiilsena. Vedanta traditsioonis nimetatakse seda "juure lukuks": kui see on avatud, tunneb keha end maapinnal turvaliselt. Praktikas tähendab see, et kroonilised pinged kõhus, seljas ja jalgades hakkavad lahenema. Sri Vivek Ananda õpetab Muldhaara avamist läbi teadliku jalatalla-kontakti ja sügava kõhuhingamise — tehnikad, mis aktiveerivad vagaalse närvi ja viivad keha parasümpaatilisse seisundisse. Kui juur on tugev, kaob vajadus pidevalt "ennast tõestada" — tekib loomuldne rahu, mis ei sõltu välistest oludest.</div><div class="channel-deep" data-lang="fi">Muldhaara on energiajärjestelmäsi perusta — ilman sitä mikään muu kanava ei pysy vakaana. Vedanta-perinteessä sitä kutsutaan "juuren lukoksi": kun se on avattu, keho tuntee olonsa turvalliseksi maan päällä. Käytännössä tämä tarkoittaa, että krooniset jännitykset vatsassa, selässä ja jaloissa alkavat laueta. Sri Vivek Ananda opettaa Muldhaaran avaamista tietoisen jalkapohjakontaktin ja syvän vatsahengityksen kautta — tekniikat, jotka aktivoivat vagaalisen hermon ja vievät kehon parasympaattiseen tilaan. Kun juuri on vahva, tarve jatkuvasti "todistaa itsensä" katoaa — syntyy luonnollinen rauha, joka ei riipu ulkoisista olosuhteista.</div></div></div>
+
+    <div class="channel-row" onclick="toggleChannel(this)"><div class="channel-number">02</div><div><div class="channel-title">Svadhisthana <span class="channel-toggle">+</span></div><div class="channel-text" data-lang="et">Loova tule valgus — loomingulise energia vabastamine ja teadlik suunamine. Häbi ja süü mustrite lahustamine.</div><div class="channel-text" data-lang="fi">Luovan tulen valo — luovan energian vapauttaminen ja tietoinen ohjaaminen. Häpeän ja syyllisyyden kaavojen liuottaminen.</div><div class="channel-deep" data-lang="et">Svadhisthana kannab endas kogu sinu loomingulist ja seksuaalset energiat — mitte eraldi jõududena, vaid ühe ja sama eluvoolu kahe näona. Kui see kanal on blokeeritud, tunneb inimene end emotsionaalselt tuimana, loominguliselt tühjana või pidevalt süütundes kinni. Sri Vivek Ananda nimetab seda "vee elemendi külmumiseks" — energia, mis peaks voolama, on jäätunud vanade häbi- ja süümustrite alla. Avamise praktika toimub läbi teadliku puusaliikumise, veeelemendi meditatsiooni ja emotsionaalse vabastustöö, kus keha õpib taas tundma ilma kohtumõistmiseta. Tulemuseks on elav, voolav seisund, kus loovus ja rõõm muutuvad igapäevaseks normiks.</div><div class="channel-deep" data-lang="fi">Svadhisthana kantaa kaikkea luovaa ja seksuaalista energiaasi — ei erillisinä voimina, vaan saman elinvoiman kahtena puolena. Kun tämä kanava on tukossa, ihminen tuntee itsensä emotionaalisesti turraksi, luovasti tyhjäksi tai jatkuvasti syyllisyyden vangiksi. Sri Vivek Ananda kutsuu tätä "vesielementin jäätymiseksi" — energia, jonka pitäisi virrata, on jäätynyt vanhojen häpeä- ja syyllisyyskaavojen alle. Avaaminen tapahtuu tietoisen lantionliikkeen, vesielementtimeditation ja emotionaalisen vapautustyön kautta, jossa keho oppii tuntemaan uudelleen ilman tuomitsemista. Tuloksena on elävä, virtaava tila, jossa luovuus ja ilo muuttuvat arkipäiväiseksi normiksi.</div></div></div>
+
+    <div class="channel-row" onclick="toggleChannel(this)"><div class="channel-number">03</div><div><div class="channel-title">Manipuura <span class="channel-toggle">+</span></div><div class="channel-text" data-lang="et">Sisemise päikese valgus — tahtejõu ja isikliku väe aktiveerimine. Sisemine sõdalane ärkab — vaikne jõud, mis ei vaja kellegi heakskiitu.</div><div class="channel-text" data-lang="fi">Sisäisen auringon valo — tahdonvoiman ja henkilökohtaisen voiman aktivointi. Sisäinen soturi herää — hiljainen voima, joka ei tarvitse kenenkään hyväksyntää.</div><div class="channel-deep" data-lang="et">Manipuura on sinu isikliku jõu keskus — koht, kust sa tajud, kas maailm on sinu jaoks turvaline või ohtlik. Blokeeritud Manipuura väljendub kas liigse kontrollimise vajadusena või täieliku võimetusena enda eest seista. Vedanta traditsioonis on see "tule element" — agressioon ja passiivsus on mõlemad sama tule tasakaalutuse sümptomid. Sri Vivek Ananda kasutab siin pranayama-tehnikaid, mis aktiveerivad päikeselõõmuse (solar plexus) piirkonna, kombineerituna vaikse jõu meditatsioonidega, kus õpid kandma autoriteeti ilma domineerimiseta. See on kanal, mis muudab inimesi juhtideks — mitte positsiooniga, vaid kohaloluga.</div><div class="channel-deep" data-lang="fi">Manipuura on henkilökohtaisen voimasi keskus — paikka, josta aistitaan, onko maailma turvallinen vai vaarallinen. Tukossa oleva Manipuuran ilmenemismuotoja ovat liiallinen kontrollin tarve tai täydellinen kyvyttömyys puolustaa itseään. Vedanta-perinteessä tämä on "tulielementti" — aggressio ja passiivisuus ovat saman tulen epätasapainon oireita. Sri Vivek Ananda käyttää pranayama-tekniikoita, jotka aktivoivat solar plexus -alueen, yhdistettynä hiljaisen voiman meditaatioihin, joissa opit kantamaan auktoriteettia ilman dominointia. Tämä kanava muuttaa ihmiset johtajiksi — ei aseman, vaan läsnäolon kautta.</div></div></div>
+
+    <div class="channel-row" onclick="toggleChannel(this)"><div class="channel-number">04</div><div><div class="channel-title">Anaahata <span class="channel-toggle">+</span></div><div class="channel-text" data-lang="et">Südame sügav valgus — tingimusteta armastuse kanali avamine. Suhtehaavade tervendamine. Südame intelligentsus kui elu juhtimise keskus.</div><div class="channel-text" data-lang="fi">Sydämen syvä valo — ehdottoman rakkauden kanavan avaaminen. Suhdehaavojen parantaminen. Sydämen äly elämän ohjauskeskuksena.</div><div class="channel-deep" data-lang="et">Anaahata on teadvuse süsteemi kõige võimsam transformaator — koht, kus alumised kolm kanalit (keha, emotsioon, jõud) kohtuvad ülemise kolmega (väljendus, nägemine, ühtsus). Kui südamekanal on blokeeritud, kompenseerib inimene armastuse puudumist saavutustega, tööga, ainetega — kõigega, mis täidab tühja ruumi ajutiselt. Sri Vivek Ananda õpetab, et Anaahata ei ole emotsioon, vaid intelligentsuse vorm — südame-aju, mis töötleb infot 60 korda kiiremini kui ratsionaalne mõistus. Avamise praktika hõlmab südame-koherentsuse hingamist, andestustööd ja teadlikku haavatavuse harjutamist turvalises ruumis. Tulemus pole sentimentaalsus, vaid vapustav selgus — sa hakkad "nägema" inimesi ja olukordi südamega.</div><div class="channel-deep" data-lang="fi">Anaahata on tietoisuusjärjestelmän voimakkain muuntaja — paikka, jossa kolme alempaa kanavaa (keho, tunne, voima) kohtaavat kolme ylempää (ilmaisu, näkeminen, ykseys). Kun sydänkanava on tukossa, ihminen kompensoi rakkauden puutetta saavutuksilla, työllä, aineilla — kaikella, mikä täyttää tyhjän tilan väliaikaisesti. Sri Vivek Ananda opettaa, ettei Anaahata ole tunne, vaan älykkyyden muoto — sydän-aivot, jotka käsittelevät tietoa 60 kertaa nopeammin kuin rationaalinen mieli. Avaaminen sisältää sydänkoherenssin hengitystä, anteeksiantotyötä ja tietoista haavoittuvuuden harjoittelua turvallisessa tilassa. Tulos ei ole sentimentaalisuutta, vaan hämmästyttävää selkeyttä — alat "nähdä" ihmiset ja tilanteet sydämellä.</div></div></div>
+
+    <div class="channel-row" onclick="toggleChannel(this)"><div class="channel-number">05</div><div><div class="channel-title">Vishuddhi <span class="channel-toggle">+</span></div><div class="channel-text" data-lang="et">Tõe hääle valgus — autentse eneseväljenduse vabastamine. Sinu tõeline hääl leiab koha maailmas.</div><div class="channel-text" data-lang="fi">Totuuden äänen valo — aidon itseilmaisun vapauttaminen. Todellinen äänesi löytää paikkansa maailmassa.</div><div class="channel-deep" data-lang="et">Vishuddhi on eetri element — kõige peenem füüsiline kanal, mis ühendab sisemist tõde välise väljendusega. Blokeeritud Vishuddhi väljendub kurgupingena, suutmatusena öelda "ei", pidevana kõhklusena ja tundena, et "keegi ei kuule mind". Kuid see kanal ei puuduta ainult rääkimist — see on kogu sinu loomingulise väljenduse kanal: kirjutamine, kunst, muusika, isegi viis, kuidas sa kõnnid ruumi sisse. Sri Vivek Ananda kasutab siin mantra-praktikat, kus heli vibratsioon füüsiliselt avab kõri piirkonna energiaplokke. Kombineerituna tõe-meditatsiooni ja autentse dialoogi harjutustega, leiab inimene oma "algse hääle" — hääle, mis eksisteeris enne, kui maailm ütles talle, kes ta "peaks olema".</div><div class="channel-deep" data-lang="fi">Vishuddhi on eetterin elementti — hienoin fyysinen kanava, joka yhdistää sisäisen totuuden ulkoiseen ilmaisuun. Tukossa oleva Vishuddhin ilmenemismuotoja ovat kurkun jännitys, kyvyttömyys sanoa "ei", jatkuva epäröinti ja tunne ettei "kukaan kuule minua". Mutta tämä kanava ei koske vain puhetta — se on kaiken luovan ilmaisun kanava: kirjoittaminen, taide, musiikki, jopa tapa, jolla astut huoneeseen. Sri Vivek Ananda käyttää mantra-harjoituksia, joissa äänen värähtely fyysisesti avaa kurkkualueen energiasulkuja. Yhdistettynä totuusmeditaatioon ja aidon dialogin harjoituksiin, ihminen löytää "alkuperäisen äänensä" — äänen, joka oli olemassa ennen kuin maailma kertoi, kuka hänen "pitäisi olla".</div></div></div>
+
+    <div class="channel-row" onclick="toggleChannel(this)"><div class="channel-number">06</div><div><div class="channel-title">Ajna <span class="channel-toggle">+</span></div><div class="channel-text" data-lang="et">Sisemise nägemise valgus — intuitiivse tajumise süvenemine. Nähtamatu maailma lugemine ja energiamustrite tajumine.</div><div class="channel-text" data-lang="fi">Sisäisen näkemisen valo — intuitiivisen hahmottamisen syveneminen. Näkymättömän maailman lukeminen ja energiakuvioiden aistiminen.</div><div class="channel-deep" data-lang="et">Ajna — tuntud ka kui "kolmas silm" — ei ole müstiline kontseptsioon, vaid konkreetne neuroloogiline fenomen. Käbikeha (pineal gland) toodab melatoniini ja DMT-sarnaseid ühendeid, mis sügavas meditatsioonis aktiveeruvad. Blokeeritud Ajna väljendub liigses ratsionaalsuses, intuitiivse info eiramises ja tundena, et "ma ei näe suurt pilti". Sri Vivek Ananda Ajna-praktikad hõlmavad Trataka-meditatsiooni (teadlik pilgupunkti fikseeerimine), kolmanda silma hingamist ja pimeduse-retreati elemente, kus nägemismeele eemaldamine aktiveerib sisemise nägemise. Avatud Ajna annab ligipääsu informatsioonile, mida ratsionaalne mõistus ei suuda töödelda — mustrid, ühendused, tulevikuimpulsid, mis "lihtsalt tulevad".</div><div class="channel-deep" data-lang="fi">Ajna — tunnetaan myös "kolmantena silmänä" — ei ole mystinen käsite, vaan konkreettinen neurologinen ilmiö. Käpyrauhanen tuottaa melatoniinia ja DMT:n kaltaisia yhdisteitä, jotka aktivoituvat syvässä meditaatiossa. Tukossa olevan Ajnan ilmenemismuotoja ovat liiallinen rationaalisuus, intuitiivisen tiedon sivuuttaminen ja tunne ettei "näe suurta kuvaa". Sri Vivek Anandan Ajna-harjoitukset sisältävät Trataka-meditaation (tietoinen katseen kiinnittäminen), kolmannen silmän hengityksen ja pimeys-retriitin elementtejä, joissa näköaistin poistaminen aktivoi sisäisen näkemisen. Avattu Ajna antaa pääsyn tietoon, jota rationaalinen mieli ei kykene käsittelemään — kuviot, yhteydet, tulevaisuusimpulssit, jotka "vain tulevat".</div></div></div>
+
+    <div class="channel-row" onclick="toggleChannel(this)"><div class="channel-number">07</div><div><div class="channel-title">Sahasraara <span class="channel-toggle">+</span></div><div class="channel-text" data-lang="et">Kosmilise ühtsuse valgus — ühendus kõrgema teadvuse ja kosmilise allikaga. Siin algab tõeline valguskeha aktiveerimine ja vaimne suveräänasus.</div><div class="channel-text" data-lang="fi">Kosmisen ykseyden valo — yhteys korkeampaan tietoisuuteen ja kosmiseen lähteeseen. Tästä alkaa todellinen valokehon aktivointi ja henkinen suvereniteetti.</div><div class="channel-deep" data-lang="et">Sahasraara ei ole kanal selle sõna tavapärases mõttes — see on lõpmatus ise. Vedanta filosoofias nimetatakse seda Turiya-seisundiks: puhas teadvus, mis eksisteerib ärkveloleku, unenägemise ja sügava une taga. Siin ei ole enam "mina" ja "universum" — on ainult üks väli. Sri Vivek Ananda õpetab, et Sahasraara avamine ei ole saavutus, vaid loobumine — kõigest, mis sa arvad end olevat. Praktika hõlmab kõrgetasemelist Nada-meditatsiooni (sisemise heli kuulamine), kosmilise energia kanaliseerimist läbi kroonikanali ja lõpuks valguskeha aktiveerimist — protsess, kus füüsiline keha hakkab vibreerima kõrgemal sagedusel. See on teekonna lõpp ja algus korraga.</div><div class="channel-deep" data-lang="fi">Sahasraara ei ole kanava sanan tavanomaisessa merkityksessä — se on äärettömyys itse. Vedanta-filosofiassa sitä kutsutaan Turiya-tilaksi: puhdas tietoisuus, joka on valvetilan, unen ja syvän unen takana. Täällä ei ole enää "minää" ja "universumia" — on vain yksi kenttä. Sri Vivek Ananda opettaa, ettei Sahasraaran avaaminen ole saavutus, vaan luopuminen — kaikesta, mitä luulet olevasi. Harjoitus sisältää korkeatasoista Nada-meditaatiota (sisäisen äänen kuuntelua), kosmisen energian kanavointia kruunukanavan kautta ja lopulta valokehon aktivointia — prosessin, jossa fyysinen keho alkaa värähdellä korkeammalla taajuudella. Se on matkan loppu ja alku samanaikaisesti.</div></div></div>
   </div>
 </section>
 
@@ -862,23 +1027,49 @@ body.lang-fi .test-avatar[data-lang="et"] { display: none; }
 </section>
 
 <!-- QUIZ -->
-<section class="quiz-section">
+<section class="quiz-section" id="test">
   <div class="quiz-box">
-    <span class="quiz-icon">◈</span>
-    <h3 class="quiz-title" data-lang="et">Milline kanal on sul kinni?</h3>
-    <h3 class="quiz-title" data-lang="fi">Mikä kanava on sinulla tukossa?</h3>
-    <p class="quiz-desc" data-lang="et">Tee 2-minutiline enesetest ja saa isiklik soovitus, millise programmiga alustada. Lisaks saad 3 tasuta juhendatud praktikat ja energeetilise kaardistuse.</p>
-    <p class="quiz-desc" data-lang="fi">Tee 2 minuutin itsetesti ja saat henkilökohtaisen suosituksen, millä ohjelmalla aloittaa. Lisäksi saat 3 ilmaista ohjattua harjoitusta ja energeettisen kartoituksen.</p>
-    <div class="quiz-features">
-      <span class="quiz-feature" data-lang="et">7 küsimust</span>
-      <span class="quiz-feature" data-lang="fi">7 kysymystä</span>
-      <span class="quiz-feature" data-lang="et">Isiklik tulemus</span>
-      <span class="quiz-feature" data-lang="fi">Henkilökohtainen tulos</span>
-      <span class="quiz-feature" data-lang="et">3 tasuta praktikat</span>
-      <span class="quiz-feature" data-lang="fi">3 ilmaista harjoitusta</span>
+    <!-- INTRO -->
+    <div id="quiz-intro">
+      <span class="quiz-icon">◈</span>
+      <h3 class="quiz-title" data-lang="et">Milline kanal on sul kinni?</h3>
+      <h3 class="quiz-title" data-lang="fi">Mikä kanava on sinulla tukossa?</h3>
+      <p class="quiz-desc" data-lang="et">7 küsimust, 2 minutit. Saa teada, milline valguse kanal vajab sinu tähelepanu kõige rohkem — ja milline programm sind kõige paremini aitaks.</p>
+      <p class="quiz-desc" data-lang="fi">7 kysymystä, 2 minuuttia. Saat tietää, mikä valokanava tarvitsee huomiotasi eniten — ja mikä ohjelma auttaisi sinua parhaiten.</p>
+      <div class="quiz-features">
+        <span class="quiz-feature" data-lang="et">7 küsimust</span>
+        <span class="quiz-feature" data-lang="fi">7 kysymystä</span>
+        <span class="quiz-feature" data-lang="et">Isiklik tulemus</span>
+        <span class="quiz-feature" data-lang="fi">Henkilökohtainen tulos</span>
+        <span class="quiz-feature" data-lang="et">Programmi soovitus</span>
+        <span class="quiz-feature" data-lang="fi">Ohjelmasuositus</span>
+      </div>
+      <button class="btn-primary" onclick="startQuiz()" data-lang="et">Alusta testi</button>
+      <button class="btn-primary" onclick="startQuiz()" data-lang="fi">Aloita testi</button>
     </div>
-    <a href="#" class="btn-primary" data-lang="et">Tee test</a>
-    <a href="#" class="btn-primary" data-lang="fi">Tee testi</a>
+    <!-- QUESTIONS -->
+    <div id="quiz-questions" style="display:none;">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-bar"></div></div>
+      <div class="quiz-q-number" id="quiz-qnum"></div>
+      <div class="quiz-q-text" id="quiz-qtext-et" data-lang="et"></div>
+      <div class="quiz-q-text" id="quiz-qtext-fi" data-lang="fi"></div>
+      <div class="quiz-options" id="quiz-options"></div>
+    </div>
+    <!-- RESULT -->
+    <div id="quiz-result" style="display:none;">
+      <div class="quiz-result-icon" id="quiz-result-icon"></div>
+      <div class="quiz-result-channel" id="quiz-result-channel"></div>
+      <div class="quiz-result-title" id="quiz-result-title-et" data-lang="et"></div>
+      <div class="quiz-result-title" id="quiz-result-title-fi" data-lang="fi"></div>
+      <div class="quiz-result-desc" id="quiz-result-desc-et" data-lang="et"></div>
+      <div class="quiz-result-desc" id="quiz-result-desc-fi" data-lang="fi"></div>
+      <div class="quiz-result-rec" data-lang="et">Soovitatud programm:</div>
+      <div class="quiz-result-rec" data-lang="fi">Suositeltu ohjelma:</div>
+      <a href="#" class="btn-primary" id="quiz-result-btn-et" data-lang="et"></a>
+      <a href="#" class="btn-primary" id="quiz-result-btn-fi" data-lang="fi"></a>
+      <button class="btn-secondary" onclick="startQuiz()" style="margin-top:12px;" data-lang="et">Tee test uuesti</button>
+      <button class="btn-secondary" onclick="startQuiz()" style="margin-top:12px;" data-lang="fi">Tee testi uudelleen</button>
+    </div>
   </div>
 </section>
 
@@ -993,16 +1184,92 @@ body.lang-fi .test-avatar[data-lang="et"] { display: none; }
   </div>
 </section>
 
-<!-- FINAL CTA -->
+<!-- FREE JOURNEY -->
 <section class="final-cta" id="liitu">
-  <div class="free-offer" data-lang="et">Tasuta: 3 praktikat + 7-kanali enesetest + isiklik soovitus</div>
-  <div class="free-offer" data-lang="fi">Ilmainen: 3 harjoitusta + 7-kanavan itsetesti + henkilökohtainen suositus</div>
-  <h2 class="section-title" data-lang="et">Sinu peidetud valgus ootab.<br><em>Kas sina oled valmis?</em></h2>
-  <h2 class="section-title" data-lang="fi">Kätketty valosi odottaa.<br><em>Oletko sinä valmis?</em></h2>
-  <p class="section-desc centered" style="margin:0 auto 40px;" data-lang="et">Liitu tasuta algusprogrammiga ja koge Sri Vivek Ananda õpetuste transformeerivat jõudu. Esimene samm ei maksa midagi — peale julguse.</p>
-  <p class="section-desc centered" style="margin:0 auto 40px;" data-lang="fi">Liity ilmaiseen aloitusohjelmaan ja koe Sri Vivek Anandan opetusten muuttava voima. Ensimmäinen askel ei maksa mitään — paitsi rohkeutta.</p>
-  <a href="#" class="btn-primary" data-lang="et">Alusta tasuta teekonda</a>
-  <a href="#" class="btn-primary" data-lang="fi">Aloita ilmainen matkasi</a>
+  <div class="free-offer" data-lang="et">Tasuta: 15-minutiline juhendatud valguse meditatsioon</div>
+  <div class="free-offer" data-lang="fi">Ilmainen: 15 minuutin ohjattu valomeditaatio</div>
+  <h2 class="section-title" data-lang="et">Sinu peidetud valgus ootab.<br><em>Koge seda kohe.</em></h2>
+  <h2 class="section-title" data-lang="fi">Kätketty valosi odottaa.<br><em>Koe se nyt.</em></h2>
+
+  <!-- LAUNCH BOX -->
+  <div id="journey-launch" class="journey-box">
+    <span style="font-size:48px;display:block;margin-bottom:20px;">◈</span>
+    <h3 class="journey-step-title" data-lang="et">Muldhaara valguse meditatsioon</h3>
+    <h3 class="journey-step-title" data-lang="fi">Muldhaara-valomeditaatio</h3>
+    <p class="journey-step-desc" data-lang="et">Sri Vivek Ananda esimene valgusepraktika — juhendatud teekond läbi keha sügavaimate kihtide. 15 minutit, mis võivad muuta kõike. Sul pole vaja eelnevat kogemust. Ainult valmisolekut kohata iseennast.</p>
+    <p class="journey-step-desc" data-lang="fi">Sri Vivek Anandan ensimmäinen valoharjoitus — ohjattu matka kehon syvimpien kerrosten läpi. 15 minuuttia, jotka voivat muuttaa kaiken. Et tarvitse aiempaa kokemusta. Vain valmiutta kohdata itsesi.</p>
+    <div style="display:flex;justify-content:center;gap:24px;margin:20px 0;font-size:12px;color:var(--text-soft);">
+      <span>◈ 15 min</span>
+      <span data-lang="et">◈ Juhendatud</span><span data-lang="fi">◈ Ohjattu</span>
+      <span data-lang="et">◈ Silmad suletud</span><span data-lang="fi">◈ Silmät kiinni</span>
+    </div>
+    <button class="btn-primary" onclick="launchMeditation()" data-lang="et">Alusta meditatsiooni</button>
+    <button class="btn-primary" onclick="launchMeditation()" data-lang="fi">Aloita meditaatio</button>
+  </div>
+
+  <!-- FULLSCREEN MEDITATION -->
+  <div id="med-overlay" class="med-overlay">
+    <audio id="med-audio" loop preload="auto" src="meditation-audio.mp3"></audio>
+    <div class="med-particles" id="med-particles"></div>
+    <div class="med-timer" id="med-timer"></div>
+    <div class="med-phase-label" id="med-phase-label"></div>
+    <div class="med-text-container">
+      <div class="med-text" id="med-text"></div>
+      <div class="med-instruction" id="med-instruction"></div>
+    </div>
+    <div class="med-breath-indicator" id="med-breath-ind">
+      <div class="med-breath-ring" id="med-breath-ring"></div>
+    </div>
+    <div class="med-progress"><div class="med-progress-bar" id="med-prog-bar"></div></div>
+    <button class="med-skip" id="med-skip" onclick="skipToNext()" data-lang="et">Edasi →</button>
+    <button class="med-skip" id="med-skip-fi" onclick="skipToNext()" data-lang="fi">Seuraava →</button>
+  </div>
+
+  <!-- POST-MEDITATION DIAGNOSTIC -->
+  <div id="journey-post" class="journey-box" style="display:none;">
+    <div class="journey-step-badge" data-lang="et">Meditatsiooni järel — Diagnostika</div>
+    <div class="journey-step-badge" data-lang="fi">Meditaation jälkeen — Diagnostiikka</div>
+    <h3 class="journey-step-title" data-lang="et">Sa oled praegu teises seisundis.</h3>
+    <h3 class="journey-step-title" data-lang="fi">Olet nyt toisessa tilassa.</h3>
+    <p class="journey-step-desc" data-lang="et">See, mida sa just kogesid, oli ainult esimene kanali äratamine. Sri Vivek Ananda süsteemis on neid seitse — ja iga järgmine viib sind sügavamale.<br><br>Märka nüüd, mida keha ütleb. Vali tunne, mis on praegu kõige tugevam:</p>
+    <p class="journey-step-desc" data-lang="fi">Se, mitä juuri koit, oli vain ensimmäisen kanavan herättäminen. Sri Vivek Anandan järjestelmässä niitä on seitsemän — ja jokainen seuraava vie sinut syvemmälle.<br><br>Huomaa nyt, mitä keho sanoo. Valitse tunne, joka on tällä hetkellä voimakkain:</p>
+    <div class="journey-feelings">
+      <button class="feeling-btn" onclick="selectFeeling(this,'grounded')">
+        <span class="feeling-icon">🌿</span>
+        <span data-lang="et">Sügav rahu. Jalad maa peal. Stabiilsus, mida pole ammu tundnud.</span>
+        <span data-lang="fi">Syvä rauha. Jalat maassa. Vakautta, jota en ole tuntenut pitkään aikaan.</span>
+      </button>
+      <button class="feeling-btn" onclick="selectFeeling(this,'restless')">
+        <span class="feeling-icon">🔥</span>
+        <span data-lang="et">Energia liigub. Midagi keha sees ärkab. Rahutus, mis tahab väljundit.</span>
+        <span data-lang="fi">Energia liikkuu. Jokin kehon sisällä herää. Levottomuus, joka haluaa ulospääsyn.</span>
+      </button>
+      <button class="feeling-btn" onclick="selectFeeling(this,'open')">
+        <span class="feeling-icon">💛</span>
+        <span data-lang="et">Südames midagi avaneb. Soojus. Peaaegu nagu pisarad. Tundmatu hellus.</span>
+        <span data-lang="fi">Jotain avautuu sydämessä. Lämpöä. Melkein kuin kyyneleitä. Tuntematon hellyys.</span>
+      </button>
+      <button class="feeling-btn" onclick="selectFeeling(this,'unclear')">
+        <span class="feeling-icon">🌫</span>
+        <span data-lang="et">Midagi liikus, aga ei oska sõnastada. Keha tunneb teistmoodi kui enne.</span>
+        <span data-lang="fi">Jotain liikkui, mutta en osaa pukea sanoiksi. Keho tuntuu erilaiselta kuin ennen.</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- PERSONAL RECOMMENDATION -->
+  <div id="journey-step-3" class="journey-box" style="display:none;">
+    <div class="journey-step-badge" data-lang="et">Sinu isiklik tee</div>
+    <div class="journey-step-badge" data-lang="fi">Sinun henkilökohtainen tiesi</div>
+    <h3 class="journey-step-title" id="journey-rec-title-et" data-lang="et"></h3>
+    <h3 class="journey-step-title" id="journey-rec-title-fi" data-lang="fi"></h3>
+    <p class="journey-step-desc" id="journey-rec-desc-et" data-lang="et"></p>
+    <p class="journey-step-desc" id="journey-rec-desc-fi" data-lang="fi"></p>
+    <a href="#" class="btn-primary" id="journey-rec-btn-et" data-lang="et"></a>
+    <a href="#" class="btn-primary" id="journey-rec-btn-fi" data-lang="fi"></a>
+    <p style="margin-top:20px;font-size:12px;color:var(--text-soft);" data-lang="et">Või <a href="#test" style="color:var(--coral);">tee täielik 7-kanali test</a> täpsema soovituse saamiseks.</p>
+    <p style="margin-top:20px;font-size:12px;color:var(--text-soft);" data-lang="fi">Tai <a href="#test" style="color:var(--coral);">tee täydellinen 7-kanavan testi</a> tarkemman suosituksen saamiseksi.</p>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -1033,7 +1300,7 @@ body.lang-fi .test-avatar[data-lang="et"] { display: none; }
       <div class="footer-col-title" data-lang="fi">Yhteys</div>
       <a href="#">Instagram</a>
       <a href="#">YouTube</a>
-      <a href="#">Discord</a>
+      <a href="https://t.me/guhyajyoti">Telegram</a>
       <a href="#" data-lang="et">Kontakt</a><a href="#" data-lang="fi">Yhteystiedot</a>
     </div>
   </div>
@@ -1085,6 +1352,439 @@ function setLang(lang) {
     btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
   });
   document.documentElement.lang = lang;
+}
+
+// ===== CHANNEL ACCORDION =====
+function toggleChannel(row) {
+  const wasOpen = row.classList.contains('open');
+  document.querySelectorAll('.channel-row.open').forEach(r => r.classList.remove('open'));
+  if (!wasOpen) row.classList.add('open');
+}
+
+// ===== QUIZ =====
+const quizData = [
+  { ch: 0, et: 'Kui sageli tunned end füüsiliselt ebakindlana — nagu poleks sul "maapinda jalge all"?', fi: 'Kuinka usein tunnet olosi fyysisesti epävarmaksi — kuin sinulla ei olisi "maata jalkojen alla"?',
+    opts: [
+      { et: 'Peaaegu iga päev', fi: 'Lähes joka päivä', score: 3 },
+      { et: 'Mõnikord, eriti stressiperioodidel', fi: 'Joskus, erityisesti stressijaksoina', score: 2 },
+      { et: 'Harva, tunnen end üldiselt stabiilselt', fi: 'Harvoin, tunnen oloni yleensä vakaaksi', score: 1 },
+      { et: 'Praktiliselt mitte kunagi', fi: 'Käytännössä ei koskaan', score: 0 }
+    ]},
+  { ch: 1, et: 'Kuidas kirjeldaksid oma suhet loomingulise energiaga — kirjutamine, kunst, ideed?', fi: 'Miten kuvailisit suhdettasi luovaan energiaan — kirjoittaminen, taide, ideat?',
+    opts: [
+      { et: 'Tunnen end loominguliselt täiesti tühjana', fi: 'Tunnen olevani luovasti täysin tyhjä', score: 3 },
+      { et: 'Ideid on, aga miski blokeerib nende väljendamist', fi: 'Ideoita on, mutta jokin estää niiden ilmaisun', score: 2 },
+      { et: 'Loomingulisus tuleb ja läheb lainetena', fi: 'Luovuus tulee ja menee aaltoina', score: 1 },
+      { et: 'Loominguline energia voolab vabalt', fi: 'Luova energia virtaa vapaasti', score: 0 }
+    ]},
+  { ch: 2, et: 'Kui keegi astub sinu piiridest üle, mis on sinu tüüpiline reaktsioon?', fi: 'Kun joku ylittää rajasi, mikä on tyypillinen reaktiosi?',
+    opts: [
+      { et: 'Neelan alla ja teen näo, et kõik on korras', fi: 'Nielen sen ja teeskentelen, että kaikki on hyvin', score: 3 },
+      { et: 'Vihastun sisemiselt, aga ei ütle midagi', fi: 'Vihastun sisäisesti, mutta en sano mitään', score: 2 },
+      { et: 'Ütlen välja, aga tunnen end pärast süüdi', fi: 'Sanon ääneen, mutta tunnen syyllisyyttä jälkeenpäin', score: 1 },
+      { et: 'Sean piiri rahulikult ja selgelt', fi: 'Asetan rajan rauhallisesti ja selkeästi', score: 0 }
+    ]},
+  { ch: 3, et: 'Kuidas tunned end lähedaste suhetes — kas armastuse andmine ja vastuvõtmine on lihtne?', fi: 'Miltä sinusta tuntuu läheisissä suhteissa — onko rakkauden antaminen ja vastaanottaminen helppoa?',
+    opts: [
+      { et: 'Hoian inimesi emotsionaalselt eemale', fi: 'Pidän ihmiset emotionaalisesti etäällä', score: 3 },
+      { et: 'Annan palju, aga mul on raske vastu võtta', fi: 'Annan paljon, mutta minun on vaikea vastaanottaa', score: 2 },
+      { et: 'Vahel avatud, vahel suletud — sõltub päevast', fi: 'Välillä avoin, välillä sulkeutunut — riippuu päivästä', score: 1 },
+      { et: 'Tunnen end suhetes avatuna ja turvaliselt', fi: 'Tunnen olevani avoin ja turvallinen suhteissa', score: 0 }
+    ]},
+  { ch: 4, et: 'Kui tihti tunned, et sinu tõelist arvamust ei kuulda — või et sa ei julge seda väljendada?', fi: 'Kuinka usein tunnet, ettei todellista mielipidettäsi kuulla — tai ettet uskalla ilmaista sitä?',
+    opts: [
+      { et: 'Pidevalt — ma olen harjunud vaikima', fi: 'Jatkuvasti — olen tottunut vaikenemaan', score: 3 },
+      { et: 'Sageli, eriti autoriteetide ees', fi: 'Usein, erityisesti auktoriteettien edessä', score: 2 },
+      { et: 'Mõnikord, teatud teemadel', fi: 'Joskus, tietyistä aiheista', score: 1 },
+      { et: 'Ma väljendan end vabalt ja autentselt', fi: 'Ilmaisen itseäni vapaasti ja aidosti', score: 0 }
+    ]},
+  { ch: 5, et: 'Kas sa usaldad oma intuitsiooni — sisemist teadmist, mis tuleb enne loogikat?', fi: 'Luotatko intuitioosi — sisäiseen tietoon, joka tulee ennen logiikkaa?',
+    opts: [
+      { et: 'Ei, ma usaldan ainult fakte ja loogikat', fi: 'En, luotan vain faktoihin ja logiikkaan', score: 3 },
+      { et: 'Tunnen intuitiivset signaali, aga ignoreerin seda', fi: 'Tunnen intuitiivisen signaalin, mutta sivuutan sen', score: 2 },
+      { et: 'Vahel kuulan, vahel ei — pole järjekindel', fi: 'Välillä kuuntelen, välillä en — ei ole johdonmukaista', score: 1 },
+      { et: 'Jah, intuitsioon on mu igapäevane kompass', fi: 'Kyllä, intuitio on päivittäinen kompassini', score: 0 }
+    ]},
+  { ch: 6, et: 'Kas tunned ühendust millegi suuremaga kui sina ise — kosmose, looduse, teadvusega?', fi: 'Tunnetko yhteyttä johonkin suurempaan kuin sinä itse — kosmokseen, luontoon, tietoisuuteen?',
+    opts: [
+      { et: 'Ei, tunnen end universumist ära lõigatuna', fi: 'En, tunnen olevani irti universumista', score: 3 },
+      { et: 'Harva, ainult erilistes hetkedes', fi: 'Harvoin, vain erityisissä hetkissä', score: 2 },
+      { et: 'Mõnikord looduses või meditatsioonis', fi: 'Joskus luonnossa tai meditaatiossa', score: 1 },
+      { et: 'Jah, see ühendus on pidev ja sügav', fi: 'Kyllä, tämä yhteys on jatkuva ja syvä', score: 0 }
+    ]}
+];
+const channelNames = ['Muldhaara','Svadhisthana','Manipuura','Anaahata','Vishuddhi','Ajna','Sahasraara'];
+const channelIcons = ['🌍','🔥','☀️','💚','🔮','👁','✦'];
+const channelResults = {
+  et: [
+    { title: 'Sinu juurkanal vajab tähelepanu', desc: 'Sinu keha igatseb turvatunnet ja stabiilsust. Muldhaara avamine annab sulle vundamendi, millele kogu ülejäänud transformatsioon saab toetuda. Jyoti valguse programm alustab just sellest kanalast.', prog: 'Jyoti Light — Alusta siit →', link: 'https://buy.stripe.com/00wfZhcO10v36ve6G4asg05' },
+    { title: 'Sinu loovuse kanal on blokeeritud', desc: 'Loominguline ja emotsionaalne energia on kinni jäänud. Shakti programm on spetsiaalselt loodud selle kanali vabastamiseks — läbi kehatarkuse ja tantra hingamistehnikate.', prog: 'Shakti Awakening — Vabasta loovus →', link: 'https://buy.stripe.com/28EfZh6pD3Hf5ra4xWasg03' },
+    { title: 'Sinu jõu keskus vajab aktiveerimist', desc: 'Sisemise autoriteedi ja tahtejõu kanal on nõrk. Shiva trajektoor annab sulle tagasi sinu vaikse jõu — ilma agressiooni ja ilma alistumiseta.', prog: 'Shiva Trajectory — Ärata jõud →', link: 'https://buy.stripe.com/eVqdR9cO1elT3j2c0oasg04' },
+    { title: 'Sinu südamekanal igatseb avamist', desc: 'Armastuse andmine ja vastuvõtmine on blokeeritud. Jyoti programm töötab südamekanaliga sügavalt — ühendades andestustöö ja südame-koherentsuse praktikad.', prog: 'Jyoti Light — Ava süda →', link: 'https://buy.stripe.com/00wfZhcO10v36ve6G4asg05' },
+    { title: 'Sinu tõe hääl on vaigistatud', desc: 'Autentne eneseväljendus on alla surutud. Shakti programm sisaldab mantrapraktikat ja hääle vabastamise tööd, mis aitab sul leida oma algne hääl.', prog: 'Shakti Awakening — Leia oma hääl →', link: 'https://buy.stripe.com/28EfZh6pD3Hf5ra4xWasg03' },
+    { title: 'Sinu intuitsioon vajab taasühendamist', desc: 'Sisemise nägemise kanal on tuimaks jäänud. Jyoti programm sisaldab Trataka ja pimeduse-meditatsiooni elemente, mis aktiveerivad kolmanda silma.', prog: 'Jyoti Light — Ava sisemine silm →', link: 'https://buy.stripe.com/00wfZhcO10v36ve6G4asg05' },
+    { title: 'Sinu kosmilise ühenduse kanal ootab', desc: 'Ühtsuse kogemus on haruldane või puudub. Jyoti valguse programm viib sind süstemaatiliselt läbi kõigi seitsme kanali kuni Sahasraarani — kosmilise teadvuse läveni.', prog: 'Jyoti Light — Ühine kosmosega →', link: 'https://buy.stripe.com/00wfZhcO10v36ve6G4asg05' }
+  ],
+  fi: [
+    { title: 'Juurikanavasi tarvitsee huomiota', desc: 'Kehosi kaipaa turvallisuutta ja vakautta. Muldhaaran avaaminen antaa sinulle perustan, jolle koko muu muutos voi rakentua. Jyoti-valo-ohjelma alkaa juuri tästä kanavasta.', prog: 'Jyoti Light — Aloita tästä →', link: 'https://buy.stripe.com/00wfZhcO10v36ve6G4asg05' },
+    { title: 'Luovuuskanavasi on tukossa', desc: 'Luova ja emotionaalinen energia on jumissa. Shakti-ohjelma on erityisesti suunniteltu tämän kanavan vapauttamiseen — kehotietoisuuden ja tantra-hengitystekniikoiden kautta.', prog: 'Shakti Awakening — Vapauta luovuus →', link: 'https://buy.stripe.com/28EfZh6pD3Hf5ra4xWasg03' },
+    { title: 'Voimakeskuksesi tarvitsee aktivointia', desc: 'Sisäisen auktoriteetin ja tahdonvoiman kanava on heikko. Shiva-ohjelma palauttaa hiljaisen voimasi — ilman aggressiota ja ilman alistumista.', prog: 'Shiva Trajectory — Herätä voima →', link: 'https://buy.stripe.com/eVqdR9cO1elT3j2c0oasg04' },
+    { title: 'Sydänkanavasi kaipaa avaamista', desc: 'Rakkauden antaminen ja vastaanottaminen on tukossa. Jyoti-ohjelma työskentelee sydänkanavan kanssa syvällisesti — yhdistäen anteeksiantotyön ja sydänkoherenssin harjoitukset.', prog: 'Jyoti Light — Avaa sydän →', link: 'https://buy.stripe.com/00wfZhcO10v36ve6G4asg05' },
+    { title: 'Totuuden äänesi on hiljennetty', desc: 'Aito itseilmaisu on tukahdutettu. Shakti-ohjelma sisältää mantra-harjoituksia ja äänen vapauttamistyötä, joka auttaa löytämään alkuperäisen äänesi.', prog: 'Shakti Awakening — Löydä äänesi →', link: 'https://buy.stripe.com/28EfZh6pD3Hf5ra4xWasg03' },
+    { title: 'Intuitiosi tarvitsee uudelleenyhteyttä', desc: 'Sisäisen näkemisen kanava on turtunut. Jyoti-ohjelma sisältää Trataka- ja pimeysmeditaation elementtejä, jotka aktivoivat kolmannen silmän.', prog: 'Jyoti Light — Avaa sisäinen silmä →', link: 'https://buy.stripe.com/00wfZhcO10v36ve6G4asg05' },
+    { title: 'Kosmisen yhteyden kanavasi odottaa', desc: 'Ykseyden kokemus on harvinainen tai puuttuu. Jyoti-valo-ohjelma vie sinut systemaattisesti kaikkien seitsemän kanavan läpi Sahasraaraan — kosmisen tietoisuuden kynnykselle.', prog: 'Jyoti Light — Yhdisty kosmokseen →', link: 'https://buy.stripe.com/00wfZhcO10v36ve6G4asg05' }
+  ]
+};
+
+let quizScores = [0,0,0,0,0,0,0];
+let quizStep = 0;
+
+function startQuiz() {
+  quizScores = [0,0,0,0,0,0,0];
+  quizStep = 0;
+  document.getElementById('quiz-intro').style.display = 'none';
+  document.getElementById('quiz-result').style.display = 'none';
+  document.getElementById('quiz-questions').style.display = 'block';
+  showQuestion();
+}
+function showQuestion() {
+  const q = quizData[quizStep];
+  const isFi = document.body.classList.contains('lang-fi');
+  document.getElementById('quiz-bar').style.width = ((quizStep+1)/7*100)+'%';
+  document.getElementById('quiz-qnum').textContent = (isFi ? 'Kysymys' : 'Küsimus') + ' ' + (quizStep+1) + '/7';
+  document.getElementById('quiz-qtext-et').textContent = q.et;
+  document.getElementById('quiz-qtext-fi').textContent = q.fi;
+  const opts = document.getElementById('quiz-options');
+  opts.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.innerHTML = '<span data-lang="et">'+o.et+'</span><span data-lang="fi">'+o.fi+'</span>';
+    if (isFi) { btn.querySelectorAll('[data-lang="et"]').forEach(e=>e.style.display='none'); btn.querySelectorAll('[data-lang="fi"]').forEach(e=>e.style.display='inline'); }
+    else { btn.querySelectorAll('[data-lang="fi"]').forEach(e=>e.style.display='none'); }
+    btn.onclick = () => answerQuiz(q.ch, o.score);
+    opts.appendChild(btn);
+  });
+}
+function answerQuiz(ch, score) {
+  quizScores[ch] += score;
+  quizStep++;
+  if (quizStep < 7) { showQuestion(); }
+  else { showQuizResult(); }
+}
+function showQuizResult() {
+  document.getElementById('quiz-questions').style.display = 'none';
+  document.getElementById('quiz-result').style.display = 'block';
+  let maxI = 0; quizScores.forEach((s,i) => { if (s > quizScores[maxI]) maxI = i; });
+  const r_et = channelResults.et[maxI];
+  const r_fi = channelResults.fi[maxI];
+  document.getElementById('quiz-result-icon').textContent = channelIcons[maxI];
+  document.getElementById('quiz-result-channel').textContent = channelNames[maxI] + ' — ' + (maxI+1) + '. kanal';
+  document.getElementById('quiz-result-title-et').textContent = r_et.title;
+  document.getElementById('quiz-result-title-fi').textContent = r_fi.title;
+  document.getElementById('quiz-result-desc-et').textContent = r_et.desc;
+  document.getElementById('quiz-result-desc-fi').textContent = r_fi.desc;
+  document.getElementById('quiz-result-btn-et').textContent = r_et.prog;
+  document.getElementById('quiz-result-btn-et').href = r_et.link;
+  document.getElementById('quiz-result-btn-fi').textContent = r_fi.prog;
+  document.getElementById('quiz-result-btn-fi').href = r_fi.link;
+}
+
+// ===== IMMERSIVE MEDITATION ENGINE =====
+const medPhases = {
+  et: [
+    // PHASE 1: ARRIVAL (0:00 - 3:00)
+    { phase: 'Saabumine', bg: '#0a0a12', texts: [
+      { t: 'Leia mugav asend.\n\nSulge silmad.', d: 12000, inst: 'Lase kehal paika tulla...' },
+      { t: 'Maailm jääb seisma.\n\nKõik, mis enne seda hetke oli —\ntöö, teised inimesed, kohustused —\nkõik see võib praegu oodata.', d: 16000, inst: '' },
+      { t: 'Sa ei pea praegu mitte midagi tegema.\nMitte midagi saavutama.\nMitte midagi parandama.\n\nSee on haruldane luba, mille sa annad iseendale.', d: 16000, inst: '' },
+      { t: 'Ainult olema.', d: 8000, inst: '' },
+      { t: 'Märka, kuidas keha toetub pinnale, millel sa istud.\nTunne raskusjõudu.\nMaa hoiab sind.\n\nSa ei pea ise ennast hoidma.', d: 16000, inst: '' },
+      { t: 'Lase iga väljahingamisega\npingetel kehast lahkuda.\n\nÕlad... lõug... käed... kõht.\n\nNeed on kohad, kuhu sa oled\naastaid pinget kogunud.', d: 18000, inst: 'Hinga loomulikult...' },
+      { t: 'Iga pinge, mis lahkub,\non luba, mille sa annad iseendale.\n\nLuba mitte kontrollida.\nLuba mitte karta.\nLuba lihtsalt olla.', d: 16000, inst: '' },
+      { t: 'Sa oled nüüd siin.\nTäielikult siin.\nMitte eilses. Mitte homses.\n\nSiin, kus elu tegelikult toimub.', d: 14000, inst: '' },
+    ]},
+    // PHASE 2: DESCENT (3:00 - 6:00)
+    { phase: 'Laskumine', bg: '#0d0a16', texts: [
+      { t: 'Nüüd suuna tähelepanu oma kõhtu.\nSinna, kust hingamine algab.\n\nSee on koht, mida sa igapäevaselt ignoreerid —\naga mis teab sinust kõike.', d: 16000, inst: '' },
+      { t: 'Vedanta traditsioonis nimetatakse seda piirkonda\nMuldhaara — juurvalguse keskus.\n\nKoht, kus elu sind maaga ühendab.\nKoht, kus sinu kõige vanemad mälestused elavad.', d: 18000, inst: '' },
+      { t: 'Kujuta ette, et sinu keha all,\notse seal, kus sa istud,\nalgab kasvada soe, tumepunane valgus.', d: 14000, inst: 'Näe seda valgust...' },
+      { t: 'See valgus ei tule väljastpoolt.\nSee on olnud sinus alati —\nootamas, et sa teda märkaksid.\n\nNagu tuli, mis on söe all —\nalati seal, ainult tuha alla maetud.', d: 18000, inst: '' },
+      { t: 'Iga hingamisega\nmuutub see valgus pisut heledamaks.\nPisut soojemaks.\nPisut reaalsemaks.\n\nKuni sa tunned seda füüsiliselt.', d: 16000, inst: '' },
+      { t: 'Tunne, kuidas soojus\nlevib alakehas.\n\nJalad... puusad... selgroo alus.\n\nSee on sinu juurte soojus.\nSee on tunne, et sa kuulud siia — sellele maale, sellesse kehasse, sellesse ellu.', d: 20000, inst: '' },
+      { t: 'Kui sa tunned praegu midagi —\nsurve, soojust, surisemist, emotsiooni —\nsiis tea, et see on normaalne.\n\nSinu keha vastab.\nSinu keha mäletab.', d: 16000, inst: '' },
+    ]},
+    // PHASE 3: GUIDED BREATH (6:00 - 9:30)
+    { phase: 'Valguse hingamine', bg: '#100a18', texts: [
+      { t: 'Nüüd hakkame hingama koos valgusega.\n\nSee on Sri Vivek Ananda "Valguse Hingamise" tehnika —\niidne praktika, mida on edasi antud\nõpetajalt õpilasele üle sajandite.', d: 16000, inst: '' },
+      { t: 'Iga sissehingamine toob valgust sisse.\nIga väljahingamine laseb vanal lahkuda.\n\nSa ei pea midagi kontrollima —\nvalgus teab, kuhu minna.', d: 16000, inst: '' },
+      { t: 'SISSE — nina kaudu, aeglaselt.\nTunne, kuidas valgus tõuseb\nselgroogu mööda üles.\n\nNagu soe laine, mis peseb sind seestpoolt puhtaks.', d: 16000, inst: '4 sekundit sisse...', breath: 'inhale' },
+      { t: 'HOIA — valgus peatub südame kohal.\nSoe. Kuldne. Vaikne.\n\nSee hetk on ainult sinu.\nKeegi ei saa seda sinult ära võtta.', d: 14000, inst: '4 sekundit hoia...', breath: 'hold' },
+      { t: 'VÄLJA — suu kaudu, aeglaselt.\nKõik, mis ei kuulu sulle, lahkub koos õhuga.\n\nHirm. Kahtlus. Pinge.\nTeiste inimeste ootused.\nSinu enda kohtumõistmine enda üle.', d: 16000, inst: '6 sekundit välja...', breath: 'exhale' },
+      { t: 'Tunne, kuidas pärast esimest tsüklit\non keha juba kergem.\n\nSee pole illusioon.\nSee on see, mis juhtub,\nkui sa lõpetad enda vastu võitlemise.', d: 14000, inst: '' },
+      { t: 'SISSE — valgus tõuseb.\nSoojus levib.\nIga rakk sinu kehas ärkab.\n\nSa oled elavam kui viis minutit tagasi.', d: 14000, inst: 'Sisse...', breath: 'inhale' },
+      { t: 'HOIA — ole selles valguses.\nSee on sinu algne seisund.\n\nSa ei ole kunagi olnud pimeduses —\nsa olid ainult unustanud, et valgus on sinu sees.', d: 14000, inst: 'Hoia...', breath: 'hold' },
+      { t: 'VÄLJA — lase lahti.\nKõigest, mis sind raskendab.\nKõigest, mis ei ole sina.\n\nSa ei kaota midagi — sa vabastad.', d: 14000, inst: 'Välja...', breath: 'exhale' },
+      { t: 'SISSE — sügavamalt kui kunagi varem.\nValgus ulatub nüüd igasse kehaosasse.\n\nSõrmedesse. Varvastesse. Pealae tippu.\nSa oled valgusest läbi imbunud.', d: 16000, inst: 'Sisse... sügavalt...', breath: 'inhale' },
+      { t: 'HOIA — sa oled täis valgust.\nIga rakk särab.\n\nSee pole kujutlus.\nSee on sinu tõeline olek —\nolek, mida sa oled terve elu otsinud.', d: 14000, inst: 'Hoia seda tunnet...', breath: 'hold' },
+      { t: 'VÄLJA — viimane laine.\nKõik vana on läinud.\nAlles on ainult puhas, vaikne kohalolu.\n\nSee oled sina — ilma maskideta.', d: 14000, inst: 'Lase kõik lahti...', breath: 'exhale' },
+    ]},
+    // PHASE 4: DEEP AWARENESS (9:30 - 12:00)
+    { phase: 'Sügav teadlikkus', bg: '#0f0816', texts: [
+      { t: 'Jäta nüüd hingamine rahule.\nSee jätkab ise.\n\nSinu ainus ülesanne on —\nolla tunnistaja.\n\nOlla see, kes vaatab.', d: 16000, inst: '' },
+      { t: 'Märka ruumi, mis on tekkinud sinu sisse.\n\nSee ruum oli seal alati.\nSee on ruum, kus valgus elab.\nSee on ruum, kuhu mõtted ei ulatu.', d: 16000, inst: '' },
+      { t: 'Sri Vivek Ananda õpetab:\n\n"Sa ei ole keha, millel on teadvus.\nSa oled teadvus, millel on keha.\n\nJa teadvus on valgus."', d: 18000, inst: '' },
+      { t: 'Tunne seda.\n\nSina — see, kes sa tegelikult oled —\noled laiem kui keha.\nSügavam kui mõtted.\nVaiksem kui emotsioonid.\nVanem kui sinu nimi.', d: 18000, inst: '' },
+      { t: 'See, mida sa praegu koged,\non Muldhaara kanali esmane avanemine.\n\nEsimene seitsmest.\n\nNüüd näitan sulle, mis sind ees ootab.', d: 16000, inst: '' },
+    ]},
+    // PHASE 5: SEVEN LIGHTS VISION (12:00 - 14:00)
+    { phase: 'Seitsme valguse visioon', bg: '#0c0618', texts: [
+      { t: 'Kujuta ette seitse valguse punkti —\nsinu keha sees,\njuurtest pealae tipuni.\n\nNagu seitse tähte, mis moodustavad redelit taevasse.', d: 16000, inst: '' },
+      { t: 'Esimene valgus — siin, kus sa istud.\nTumepunane. Maa element.\nTurvatunne. Juured.\n\nSee on see, mida sa just kogesid.', d: 16000, inst: '' },
+      { t: 'Teine valgus — kõhu all.\nOranž. Vee element.\nLoovus. Kirg. Rõõm.\n\nKõik, mis teeb elu elamist väärt.', d: 14000, inst: '' },
+      { t: 'Kolmas valgus — päikesepõimikus.\nKollane. Tule element.\nJõud. Tahe. Enesekindlus.\n\nSinu sisemine sõdalane.', d: 14000, inst: '' },
+      { t: 'Neljas valgus — südames.\nRoheline-kuldne. Õhu element.\nArmastus. Andestus. Ühendus.\n\nKõige võimsam transformaator sinu sees.', d: 14000, inst: '' },
+      { t: 'Viies valgus — kurgus.\nSinine. Eetri element.\nTõde. Hääl. Autentsus.\n\nSinu tõeline eneseväljendus.', d: 14000, inst: '' },
+      { t: 'Kuues valgus — kulmude vahel.\nIndigo. Kolmas silm.\nIntuitsioon. Sisemise nägemine.\n\nNähtamatu maailma lugemine.', d: 14000, inst: '' },
+      { t: 'Seitsmes valgus — pealae tipus.\nValge-kuldne. Puhas teadvus.\nÜhtsus kosmosega.\n\nSiin lõpeb otsing.\nSiin algab ärkamine.', d: 16000, inst: '' },
+      { t: 'Seitse valgust.\nSeitse kanalit.\nSeitse ust iseendasse.\n\nNeed kõik on sinu sees —\nja need kõik on avanevad.', d: 16000, inst: '' },
+    ]},
+    // PHASE 6: RETURN (14:00 - 15:30)
+    { phase: 'Naasmine', bg: '#0d0a14', texts: [
+      { t: 'Hakka nüüd aeglaselt\ntähelepanu tagasi tooma.\n\nÄra kiirusta.\nSee, mis avanes, jääb avatuks.', d: 14000, inst: '' },
+      { t: 'Tunne uuesti tooli enda all.\nTunne käsi.\nTunne jalgu.\nTunne, kuidas õhk puudutab sinu nahka.', d: 14000, inst: 'Aeglaselt...' },
+      { t: 'Keha on sama —\naga midagi on muutunud.\n\nSa tead nüüd midagi,\nmida sa enne ei teadnud.\n\nSa tead, et valgus on sinu sees.', d: 16000, inst: '' },
+      { t: 'See, mida sa just kogesid,\non ainult algus.\n\nSa avasid ühe kanali.\nSri Vivek Ananda süsteemis\non neid seitse — ja iga järgmine\nviib sind sügavamale\nkui sa kunagi arvasid võimalik olevat.', d: 18000, inst: '' },
+      { t: 'Kui oled valmis —\nava silmad.\n\nMaailm on sama.\nAga sina oled teistsugune.', d: 14000, inst: '' },
+      { t: '◈', d: 6000, inst: '' },
+    ]}
+  ],
+  fi: [
+    // PHASE 1: ARRIVAL
+    { phase: 'Saapuminen', bg: '#0a0a12', texts: [
+      { t: 'Etsi mukava asento.\n\nSulje silmät.', d: 12000, inst: 'Anna kehon asettua...' },
+      { t: 'Maailma pysähtyy.\n\nKaikki, mikä oli ennen tätä hetkeä —\ntyö, muut ihmiset, velvollisuudet —\nkaikki se voi nyt odottaa.', d: 16000, inst: '' },
+      { t: 'Sinun ei tarvitse nyt tehdä mitään.\nSaavuttaa mitään.\nKorjata mitään.\n\nTämä on harvinainen lupa, jonka annat itsellesi.', d: 16000, inst: '' },
+      { t: 'Vain olla.', d: 8000, inst: '' },
+      { t: 'Huomaa, kuinka keho nojaa pintaan, jolla istut.\nTunne painovoima.\nMaa kannattelee sinua.\n\nSinun ei tarvitse kannatella itseäsi.', d: 16000, inst: '' },
+      { t: 'Anna jokaisen uloshengityksen mukana\njännitysten poistua kehosta.\n\nHartiat... leuka... kädet... vatsa.\n\nNämä ovat paikkoja, joihin olet\nkerännyt jännitystä vuosien ajan.', d: 18000, inst: 'Hengitä luonnollisesti...' },
+      { t: 'Jokainen jännitys, joka poistuu,\non lupa, jonka annat itsellesi.\n\nLupa olla kontrolloimatta.\nLupa olla pelkäämättä.\nLupa vain olla.', d: 16000, inst: '' },
+      { t: 'Olet nyt tässä.\nTäysin tässä.\nEt eilisessä. Et huomisessa.\n\nTässä, missä elämä todella tapahtuu.', d: 14000, inst: '' },
+    ]},
+    // PHASE 2: DESCENT
+    { phase: 'Laskeutuminen', bg: '#0d0a16', texts: [
+      { t: 'Suuntaa nyt huomiosi vatsaasi.\nSinne, mistä hengitys alkaa.\n\nTämä on paikka, jonka sivuutat arjessa —\nmutta joka tietää sinusta kaiken.', d: 16000, inst: '' },
+      { t: 'Vedanta-perinteessä tätä aluetta kutsutaan\nMuldhaara — juurivalon keskus.\n\nPaikka, jossa elämä yhdistää sinut maahan.\nPaikka, jossa vanhimmat muistosi elävät.', d: 18000, inst: '' },
+      { t: 'Kuvittele, että kehosi alla,\njuuri siinä missä istut,\nalkaa kasvaa lämmin, tummanpunainen valo.', d: 14000, inst: 'Näe tuo valo...' },
+      { t: 'Tämä valo ei tule ulkopuolelta.\nSe on ollut sinussa aina —\nodottamassa, että huomaisit sen.\n\nKuin tuli hiilien alla —\naina siellä, vain tuhkan peittämänä.', d: 18000, inst: '' },
+      { t: 'Jokaisella hengityksellä\ntuo valo muuttuu hieman kirkkaammaksi.\nHieman lämpimämmäksi.\nHieman todellisemmaksi.\n\nKunnes tunnet sen fyysisesti.', d: 16000, inst: '' },
+      { t: 'Tunne, kuinka lämpö\nleviää alavartolossa.\n\nJalat... lantio... selkärangan tyvi.\n\nTämä on juuriesi lämpö.\nTämä on tunne siitä, että kuulut tänne — tälle maalle, tähän kehoon, tähän elämään.', d: 20000, inst: '' },
+      { t: 'Jos tunnet nyt jotain —\npainetta, lämpöä, kihelmöintiä, tunnetta —\ntiedä, että se on normaalia.\n\nKehosi vastaa.\nKehosi muistaa.', d: 16000, inst: '' },
+    ]},
+    // PHASE 3: GUIDED BREATH
+    { phase: 'Valon hengitys', bg: '#100a18', texts: [
+      { t: 'Nyt alamme hengittää yhdessä valon kanssa.\n\nTämä on Sri Vivek Anandan "Valon Hengitys" -tekniikka —\nikivanha harjoitus, jota on välitetty\nopettajalta oppilaalle vuosisatojen ajan.', d: 16000, inst: '' },
+      { t: 'Jokainen sisäänhengitys tuo valoa sisään.\nJokainen uloshengitys päästää vanhan menemään.\n\nSinun ei tarvitse kontrolloida mitään —\nvalo tietää, minne mennä.', d: 16000, inst: '' },
+      { t: 'SISÄÄN — nenän kautta, hitaasti.\nTunne, kuinka valo nousee\nselkärankaa pitkin ylös.\n\nKuin lämmin aalto, joka pesee sinut sisältä puhtaaksi.', d: 16000, inst: '4 sekuntia sisään...', breath: 'inhale' },
+      { t: 'PIDÄ — valo pysähtyy sydämen kohdalle.\nLämmin. Kultainen. Hiljainen.\n\nTämä hetki on vain sinun.\nKukaan ei voi ottaa sitä sinulta.', d: 14000, inst: '4 sekuntia pidä...', breath: 'hold' },
+      { t: 'ULOS — suun kautta, hitaasti.\nKaikki, mikä ei kuulu sinulle, poistuu ilman mukana.\n\nPelko. Epäilys. Jännitys.\nMuiden odotukset.\nOma tuomitsemisesi itseäsi kohtaan.', d: 16000, inst: '6 sekuntia ulos...', breath: 'exhale' },
+      { t: 'Tunne, kuinka ensimmäisen kierroksen jälkeen\nkeho on jo kevyempi.\n\nTämä ei ole illuusio.\nTämä on se, mitä tapahtuu,\nkun lopetat taistelun itseäsi vastaan.', d: 14000, inst: '' },
+      { t: 'SISÄÄN — valo nousee.\nLämpö leviää.\nJokainen solu kehossasi herää.\n\nOlet elävämpi kuin viisi minuuttia sitten.', d: 14000, inst: 'Sisään...', breath: 'inhale' },
+      { t: 'PIDÄ — ole tässä valossa.\nTämä on alkuperäinen tilasi.\n\nEt ole koskaan ollut pimeydessä —\nolit vain unohtanut, että valo on sisälläsi.', d: 14000, inst: 'Pidä...', breath: 'hold' },
+      { t: 'ULOS — päästä irti.\nKaikesta, mikä painaa sinua.\nKaikesta, mikä ei ole sinä.\n\nEt menetä mitään — vapautat.', d: 14000, inst: 'Ulos...', breath: 'exhale' },
+      { t: 'SISÄÄN — syvemmältä kuin koskaan.\nValo ulottuu nyt kehon jokaiseen osaan.\n\nSormiin. Varpaisiin. Päälaen huipulle.\nOlet kyllästetty valolla.', d: 16000, inst: 'Sisään... syvältä...', breath: 'inhale' },
+      { t: 'PIDÄ — olet täynnä valoa.\nJokainen solu loistaa.\n\nTämä ei ole kuvitelmaa.\nTämä on todellinen olemuksesi —\noleminen, jota olet etsinyt koko elämäsi.', d: 14000, inst: 'Pidä tämä tunne...', breath: 'hold' },
+      { t: 'ULOS — viimeinen aalto.\nKaikki vanha on mennyt.\nJäljellä on vain puhdas, hiljainen läsnäolo.\n\nTämä olet sinä — ilman naamioita.', d: 14000, inst: 'Päästä kaikki irti...', breath: 'exhale' },
+    ]},
+    // PHASE 4: DEEP AWARENESS
+    { phase: 'Syvä tietoisuus', bg: '#0f0816', texts: [
+      { t: 'Jätä nyt hengitys rauhaan.\nSe jatkaa itsekseen.\n\nAinoa tehtäväsi on —\nolla todistaja.\n\nOlla se, joka katsoo.', d: 16000, inst: '' },
+      { t: 'Huomaa tila, joka on syntynyt sisällesi.\n\nTuo tila oli siellä aina.\nSe on tila, jossa valo asuu.\nSe on tila, johon ajatukset eivät yllä.', d: 16000, inst: '' },
+      { t: 'Sri Vivek Ananda opettaa:\n\n"Et ole keho, jolla on tietoisuus.\nOlet tietoisuus, jolla on keho.\n\nJa tietoisuus on valoa."', d: 18000, inst: '' },
+      { t: 'Tunne se.\n\nSinä — se, joka todella olet —\nolet laajempi kuin keho.\nSyvempi kuin ajatukset.\nHiljaisempi kuin tunteet.\nVanhempi kuin nimesi.', d: 18000, inst: '' },
+      { t: 'Se, mitä nyt koet,\non Muldhaara-kanavan ensimmäinen avautuminen.\n\nEnsimmäinen seitsemästä.\n\nNyt näytän sinulle, mitä sinua odottaa.', d: 16000, inst: '' },
+    ]},
+    // PHASE 5: SEVEN LIGHTS VISION
+    { phase: 'Seitsemän valon visio', bg: '#0c0618', texts: [
+      { t: 'Kuvittele seitsemän valopistettä —\nkehosi sisällä,\njuurista päälaen huipulle.\n\nKuin seitsemän tähteä, jotka muodostavat tikkaat taivaaseen.', d: 16000, inst: '' },
+      { t: 'Ensimmäinen valo — siellä, missä istut.\nTummanpunainen. Maan elementti.\nTurvallisuus. Juuret.\n\nTämä on se, minkä juuri koit.', d: 16000, inst: '' },
+      { t: 'Toinen valo — vatsan alla.\nOranssi. Veden elementti.\nLuovuus. Intohimo. Ilo.\n\nKaikki, mikä tekee elämästä elämisen arvoista.', d: 14000, inst: '' },
+      { t: 'Kolmas valo — solar plexuksessa.\nKeltainen. Tulen elementti.\nVoima. Tahto. Itsevarmuus.\n\nSisäinen soturisi.', d: 14000, inst: '' },
+      { t: 'Neljäs valo — sydämessä.\nVihreä-kultainen. Ilman elementti.\nRakkaus. Anteeksianto. Yhteys.\n\nVoimakkain muuntaja sisälläsi.', d: 14000, inst: '' },
+      { t: 'Viides valo — kurkussa.\nSininen. Eetterin elementti.\nTotuus. Ääni. Aitous.\n\nTodellinen itseilmaisusi.', d: 14000, inst: '' },
+      { t: 'Kuudes valo — kulmakarvojen välissä.\nIndigo. Kolmas silmä.\nIntuitio. Sisäinen näkeminen.\n\nNäkymättömän maailman lukeminen.', d: 14000, inst: '' },
+      { t: 'Seitsemäs valo — päälaen huipulla.\nValkoinen-kultainen. Puhdas tietoisuus.\nYkseys kosmoksen kanssa.\n\nTässä päättyy etsintä.\nTässä alkaa herääminen.', d: 16000, inst: '' },
+      { t: 'Seitsemän valoa.\nSeitsemän kanavaa.\nSeitsemän ovea itseesi.\n\nNe kaikki ovat sisälläsi —\nja ne kaikki ovat avautumassa.', d: 16000, inst: '' },
+    ]},
+    // PHASE 6: RETURN
+    { phase: 'Paluu', bg: '#0d0a14', texts: [
+      { t: 'Ala nyt hitaasti\ntuomaan huomiotasi takaisin.\n\nÄlä kiirehdi.\nSe, mikä avautui, pysyy avoimena.', d: 14000, inst: '' },
+      { t: 'Tunne taas tuoli allasi.\nTunne kädet.\nTunne jalat.\nTunne, kuinka ilma koskettaa ihoasi.', d: 14000, inst: 'Hitaasti...' },
+      { t: 'Keho on sama —\nmutta jokin on muuttunut.\n\nTiedät nyt jotain,\nmitä et tiennyt aiemmin.\n\nTiedät, että valo on sisälläsi.', d: 16000, inst: '' },
+      { t: 'Se, mitä juuri koit,\non vasta alku.\n\nAvasit yhden kanavan.\nSri Vivek Anandan järjestelmässä\nniitä on seitsemän — ja jokainen seuraava\nvie sinut syvemmälle\nkuin koskaan uskoitkaan mahdolliseksi.', d: 18000, inst: '' },
+      { t: 'Kun olet valmis —\navaa silmät.\n\nMaailma on sama.\nMutta sinä olet toisenlainen.', d: 14000, inst: '' },
+      { t: '◈', d: 6000, inst: '' },
+    ]}
+  ]
+};
+
+let medTimeout = null;
+let medStartTime = 0;
+let medTimerInterval = null;
+let medCurrentPhase = 0;
+let medCurrentText = 0;
+
+function launchMeditation() {
+  const overlay = document.getElementById('med-overlay');
+  overlay.classList.add('active');
+  document.body.classList.add('med-active');
+  // Start music
+  const audio = document.getElementById('med-audio');
+  audio.volume = 0;
+  audio.play().catch(()=>{});
+  let vol = 0;
+  const fadeIn = setInterval(() => { vol += 0.02; audio.volume = Math.min(vol, 0.6); if(vol >= 0.6) clearInterval(fadeIn); }, 200);
+  // Create particles
+  const pEl = document.getElementById('med-particles');
+  pEl.innerHTML = '';
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'med-particle';
+    const size = Math.random() * 4 + 2;
+    const colors = ['rgba(244,168,124,0.3)','rgba(212,175,55,0.2)','rgba(200,180,220,0.2)','rgba(178,200,187,0.2)'];
+    p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*4)]};box-shadow:0 0 ${size*8}px ${colors[Math.floor(Math.random()*4)]};animation-duration:${Math.random()*15+12}s;animation-delay:${Math.random()*10}s;`;
+    pEl.appendChild(p);
+  }
+  medStartTime = Date.now();
+  medCurrentPhase = 0;
+  medCurrentText = 0;
+  // Timer
+  medTimerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - medStartTime) / 1000);
+    const m = Math.floor(elapsed/60);
+    const s = elapsed%60;
+    document.getElementById('med-timer').textContent = m+':'+(s<10?'0':'')+s+' / 15:00';
+    const totalSec = 15*60;
+    document.getElementById('med-prog-bar').style.width = Math.min(100, elapsed/totalSec*100)+'%';
+  }, 1000);
+  playMedPhase();
+}
+
+function playMedPhase() {
+  const isFi = document.body.classList.contains('lang-fi');
+  const lang = isFi ? 'fi' : 'et';
+  const phases = medPhases[lang];
+  if (medCurrentPhase >= phases.length) { endMeditation(); return; }
+  const phase = phases[medCurrentPhase];
+  document.getElementById('med-overlay').style.background = phase.bg;
+  document.getElementById('med-phase-label').textContent = phase.phase;
+  medCurrentText = 0;
+  playMedText();
+}
+
+function playMedText() {
+  const isFi = document.body.classList.contains('lang-fi');
+  const lang = isFi ? 'fi' : 'et';
+  const phase = medPhases[lang][medCurrentPhase];
+  if (medCurrentText >= phase.texts.length) {
+    medCurrentPhase++;
+    medCurrentText = 0;
+    playMedPhase();
+    return;
+  }
+  const slide = phase.texts[medCurrentText];
+  const textEl = document.getElementById('med-text');
+  const instEl = document.getElementById('med-instruction');
+  const ring = document.getElementById('med-breath-ring');
+  // Fade out
+  textEl.classList.remove('visible');
+  instEl.classList.remove('visible');
+  setTimeout(() => {
+    textEl.innerHTML = slide.t.replace(/\n/g, '<br>');
+    instEl.textContent = slide.inst || '';
+    // Breath ring
+    ring.className = 'med-breath-ring';
+    if (slide.breath) ring.classList.add(slide.breath);
+    // Fade in
+    setTimeout(() => {
+      textEl.classList.add('visible');
+      if (slide.inst) instEl.classList.add('visible');
+    }, 400);
+    // Next
+    medTimeout = setTimeout(() => {
+      medCurrentText++;
+      playMedText();
+    }, slide.d);
+  }, 1500);
+}
+
+function skipToNext() {
+  clearTimeout(medTimeout);
+  medCurrentText++;
+  const isFi = document.body.classList.contains('lang-fi');
+  const lang = isFi ? 'fi' : 'et';
+  const phase = medPhases[lang][medCurrentPhase];
+  if (medCurrentText >= phase.texts.length) {
+    medCurrentPhase++;
+    if (medCurrentPhase >= medPhases[lang].length) { endMeditation(); return; }
+    playMedPhase();
+  } else {
+    playMedText();
+  }
+}
+
+function endMeditation() {
+  clearInterval(medTimerInterval);
+  // Fade out music
+  const audio = document.getElementById('med-audio');
+  let vol = audio.volume;
+  const fadeOut = setInterval(() => { vol -= 0.02; audio.volume = Math.max(vol, 0); if(vol <= 0) { clearInterval(fadeOut); audio.pause(); audio.currentTime = 0; } }, 150);
+  const overlay = document.getElementById('med-overlay');
+  const textEl = document.getElementById('med-text');
+  const instEl = document.getElementById('med-instruction');
+  textEl.classList.remove('visible');
+  instEl.classList.remove('visible');
+  setTimeout(() => {
+    overlay.classList.remove('active');
+    document.body.classList.remove('med-active');
+    document.getElementById('journey-launch').style.display = 'none';
+    document.getElementById('journey-post').style.display = 'block';
+    document.getElementById('journey-post').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 2000);
+}
+
+// ===== JOURNEY DIAGNOSTIC =====
+function selectFeeling(btn, feeling) {
+  document.querySelectorAll('.feeling-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  setTimeout(() => {
+    document.getElementById('journey-post').style.display = 'none';
+    document.getElementById('journey-step-3').style.display = 'block';
+    document.getElementById('journey-step-3').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const recs = {
+      grounded: { et_t: 'Sinu vundament on tugev — sa oled valmis minna sügavamale', fi_t: 'Perustasi on vahva — olet valmis menemään syvemmälle',
+        et_d: 'Muldhaara vastas sulle. Sinu juurkanal on vastuvõtlik ja elav. See tähendab, et sa oled valmis avama järgmised kanalid — südame, loovuse, sisemise nägemise. Jyoti valguse programm viib sind süstemaatiliselt läbi kõigi seitsme, ehitades igaühele sellele vundamendile, mida sa just kogesid.', fi_d: 'Muldhaara vastasi sinulle. Juurikanavasi on vastaanottavainen ja elävä. Tämä tarkoittaa, että olet valmis avaamaan seuraavat kanavat — sydämen, luovuuden, sisäisen näkemisen. Jyoti-valo-ohjelma vie sinut systemaattisesti kaikkien seitsemän läpi, rakentaen jokaisen tuon perustan päälle, jonka juuri koit.',
+        prog_et: 'Jyoti Light — Ava kõik 7 kanalit →', prog_fi: 'Jyoti Light — Avaa kaikki 7 kanavaa →', link: 'https://buy.stripe.com/00wfZhcO10v36ve6G4asg05' },
+      restless: { et_t: 'Energia ärkab — see vajab suunda ja struktuuri', fi_t: 'Energia herää — se tarvitsee suunnan ja rakenteen',
+        et_d: 'See rahutus, mida tunned, on jõu märk, mitte nõrkuse. Sinu sees on tohutu energia, mis on aastaid olnud suunamata. Shiva trajektoor on loodud just selleks — anda kaootilisele jõule struktuur, muuta rahutus vaikseks autoriteediks, muuta tuli, mis põletab, tuleks, mis valgustab.', fi_d: 'Levottomuus, jota tunnet, on voiman merkki, ei heikkouden. Sisälläsi on valtava energia, joka on ollut vuosia ilman suuntaa. Shiva-ohjelma on luotu juuri tähän — antamaan kaoottiselle voimalle rakenne, muuttamaan levottomuus hiljaiseksi auktoriteetiksi, muuttamaan polttava tuli valaisevaksi tuleksi.',
+        prog_et: 'Shiva Trajectory — Suuna oma jõud →', prog_fi: 'Shiva Trajectory — Suuntaa voimasi →', link: 'https://buy.stripe.com/eVqdR9cO1elT3j2c0oasg04' },
+      open: { et_t: 'Südame kanal vastas — see on haruldane ja ilus', fi_t: 'Sydämen kanava vastasi — tämä on harvinaista ja kaunista',
+        et_d: 'Pisarad, soojus, tundmatu hellus — need on südame kanali avanemise esimesed märgid. Enamik inimesi ei jõua sinna kunagi. Sina jõudsid esimese meditatsiooniga. Shakti programm süvendab seda avatust — ühendab südame-energia loomingulise väljendusega, kehatarkusega ja tantra hingamisega. Mis sa just tundsid — see saab alles alguseks.', fi_d: 'Kyyneleet, lämpö, tuntematon hellyys — nämä ovat sydänkanavan avautumisen ensimmäiset merkit. Useimmat ihmiset eivät koskaan pääse sinne. Sinä pääsit ensimmäisellä meditaatiolla. Shakti-ohjelma syventää tätä avoimuutta — yhdistää sydämen energian luovaan ilmaisuun, kehotietoisuuteen ja tantra-hengitykseen. Se, mitä juuri tunsit — siitä tulee vasta alku.',
+        prog_et: 'Shakti Awakening — Süvenda südame avatust →', prog_fi: 'Shakti Awakening — Syvennä sydämen avoimuutta →', link: 'https://buy.stripe.com/28EfZh6pD3Hf5ra4xWasg03' },
+      unclear: { et_t: 'Keha reageeris — isegi kui mõistus ei suuda veel sõnastada', fi_t: 'Keho reagoi — vaikka mieli ei vielä osaa pukea sanoiksi',
+        et_d: 'See, et sa tunned midagi, mida ei oska nimetada, on tegelikult kõige tugevam märk. Sinu ratsionaalne mõistus ei suuda veel töödelda seda, mida keha juba teab. Jyoti valguse programm on loodud just selleks — viia sind samm-sammult sügavamale, avada üksteise järel kõik seitse kanalit, kuni see udune tunne muutub kristallselgeks sisemiseks teadmiseks.', fi_d: 'Se, että tunnet jotain, mitä et osaa nimetä, on itse asiassa voimakkain merkki. Rationaalinen mielesi ei vielä kykene käsittelemään sitä, minkä keho jo tietää. Jyoti-valo-ohjelma on luotu juuri tähän — viedä sinut askel askeleelta syvemmälle, avata yksi toisensa jälkeen kaikki seitsemän kanavaa, kunnes tuo sumea tunne muuttuu kristallinkirkkaaksi sisäiseksi tiedoksi.',
+        prog_et: 'Jyoti Light — Selgus läbi 7 kanali →', prog_fi: 'Jyoti Light — Selkeys 7 kanavan kautta →', link: 'https://buy.stripe.com/00wfZhcO10v36ve6G4asg05' }
+    };
+    const r = recs[feeling];
+    document.getElementById('journey-rec-title-et').textContent = r.et_t;
+    document.getElementById('journey-rec-title-fi').textContent = r.fi_t;
+    document.getElementById('journey-rec-desc-et').textContent = r.et_d;
+    document.getElementById('journey-rec-desc-fi').textContent = r.fi_d;
+    document.getElementById('journey-rec-btn-et').textContent = r.prog_et;
+    document.getElementById('journey-rec-btn-et').href = r.link;
+    document.getElementById('journey-rec-btn-fi').textContent = r.prog_fi;
+    document.getElementById('journey-rec-btn-fi').href = r.link;
+  }, 800);
 }
 </script>
 </body>
