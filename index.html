@@ -199,17 +199,30 @@ section { position: relative; z-index: 1; padding: 120px 24px; }
 .centered { text-align: center; }
 .centered .section-desc { margin: 0 auto; }
 
-/* ===== GURU — DARK IMMERSIVE ===== */
+/* ===== GURU — DARK IMMERSIVE OVERLAY ===== */
 .about-guru {
-  background: #0a0a12; position: relative; overflow: hidden;
-  padding: 100px 24px 80px;
+  display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 99998; background: #0a0a12;
+  overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
+.about-guru.active { display: block; }
 .about-guru::before {
-  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: radial-gradient(ellipse at 30% 40%, rgba(244,168,124,0.04) 0%, transparent 60%),
               radial-gradient(ellipse at 70% 60%, rgba(184,169,212,0.03) 0%, transparent 50%);
+  pointer-events: none;
 }
-.guru-layout { max-width: 860px; margin: 0 auto; position: relative; z-index: 2; text-align: center; }
+.guru-back {
+  position: fixed; top: 24px; left: 24px; z-index: 99999;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5); padding: 10px 20px;
+  border-radius: 50px; font-family: 'Outfit', sans-serif;
+  font-size: 12px; letter-spacing: 1.5px; cursor: pointer;
+  transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+}
+.guru-back:hover { border-color: rgba(244,168,124,0.3); color: rgba(255,255,255,0.7); }
+.guru-layout { max-width: 860px; margin: 0 auto; position: relative; z-index: 2; text-align: center; padding: 80px 24px 60px; }
 .guru-photo-wrap {
   width: 220px; height: 280px; margin: 0 auto 40px; position: relative;
   border-radius: 120px 120px 30px 30px; overflow: hidden;
@@ -734,7 +747,7 @@ body.lang-fi .test-avatar[data-lang="et"] { display: none; }
 <nav id="nav">
   <a href="#" class="nav-logo">GUHYA<span>JYOTI</span></a>
   <ul class="nav-right">
-    <li class="nav-link-item"><a href="#guru" data-lang="et">Õpetaja</a><a href="#guru" data-lang="fi">Opettaja</a></li>
+    <li class="nav-link-item"><a href="javascript:void(0)" onclick="openGuru()" data-lang="et">Õpetaja</a><a href="javascript:void(0)" onclick="openGuru()" data-lang="fi">Opettaja</a></li>
     <li class="nav-link-item"><a href="#programmid" data-lang="et">Programmid</a><a href="#programmid" data-lang="fi">Ohjelmat</a></li>
     <li class="nav-link-item"><a href="#kanalid" data-lang="et">7 kanalit</a><a href="#kanalid" data-lang="fi">7 kanavaa</a></li>
     <li>
@@ -760,8 +773,8 @@ body.lang-fi .test-avatar[data-lang="et"] { display: none; }
   <div class="hero-buttons">
     <a href="#programmid" class="btn-primary" data-lang="et">Avasta programmid</a>
     <a href="#programmid" class="btn-primary" data-lang="fi">Tutustu ohjelmiin</a>
-    <a href="#guru" class="btn-secondary" data-lang="et">Tutvu õpetajaga</a>
-    <a href="#guru" class="btn-secondary" data-lang="fi">Tutustu opettajaan</a>
+    <a href="javascript:void(0)" onclick="openGuru()" class="btn-secondary" data-lang="et">Tutvu õpetajaga</a>
+    <a href="javascript:void(0)" onclick="openGuru()" class="btn-secondary" data-lang="fi">Tutustu opettajaan</a>
   </div>
   <div class="hero-trust">
     <div class="trust-item">
@@ -784,8 +797,10 @@ body.lang-fi .test-avatar[data-lang="et"] { display: none; }
   </div>
 </section>
 
-<!-- GURU — IMMERSIVE DARK -->
+<!-- GURU — IMMERSIVE DARK OVERLAY -->
 <section class="about-guru" id="guru">
+  <a href="javascript:void(0)" onclick="closeGuru()" class="guru-back" data-lang="et">← Tagasi</a>
+  <a href="javascript:void(0)" onclick="closeGuru()" class="guru-back" data-lang="fi">← Takaisin</a>
   <audio id="guru-audio" loop preload="auto" src="meditation-audio.mp3"></audio>
   <div class="guru-layout">
     <div class="guru-dark-tag" data-lang="et">Õpetaja</div>
@@ -1315,7 +1330,7 @@ const obs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08 });
 
-document.querySelectorAll('.program-card,.test-card,.channel-row,.guru-layout,.urgency-inner,.quiz-box,.safety-item,.podcast-card').forEach(el => {
+document.querySelectorAll('.program-card,.test-card,.channel-row,.urgency-inner,.quiz-box,.safety-item,.podcast-card').forEach(el => {
   el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
   el.style.transition = 'all 0.7s cubic-bezier(0.4,0,0.2,1)'; obs.observe(el);
 });
@@ -1760,27 +1775,28 @@ function selectFeeling(btn, feeling) {
     document.getElementById('journey-rec-btn-fi').textContent = r.prog_fi;
     document.getElementById('journey-rec-btn-fi').href = r.link;
   }, 800);
-}// Guru ambient audio
-const guruSection = document.getElementById('guru');
-const guruAudio = document.getElementById('guru-audio');
-let guruAudioPlaying = false;
-if (guruSection && guruAudio) {
-  const guruObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !guruAudioPlaying) {
-        guruAudioPlaying = true;
-        guruAudio.volume = 0;
-        guruAudio.play().catch(()=>{});
-        let gv = 0;
-        const gFade = setInterval(() => { gv += 0.01; guruAudio.volume = Math.min(gv, 0.35); if(gv >= 0.35) clearInterval(gFade); }, 200);
-      } else if (!e.isIntersecting && guruAudioPlaying) {
-        guruAudioPlaying = false;
-        let gv = guruAudio.volume;
-        const gOut = setInterval(() => { gv -= 0.02; guruAudio.volume = Math.max(gv, 0); if(gv <= 0) { clearInterval(gOut); guruAudio.pause(); } }, 100);
-      }
-    });
-  }, { threshold: 0.15 });
-  guruObs.observe(guruSection);
+}// Guru overlay
+function openGuru() {
+  const guru = document.getElementById('guru');
+  guru.classList.add('active');
+  document.body.classList.add('med-active');
+  guru.scrollTop = 0;
+  // Start music
+  const audio = document.getElementById('guru-audio');
+  audio.volume = 0;
+  audio.play().catch(()=>{});
+  let gv = 0;
+  const gFade = setInterval(() => { gv += 0.01; audio.volume = Math.min(gv, 0.35); if(gv >= 0.35) clearInterval(gFade); }, 200);
+}
+function closeGuru() {
+  const guru = document.getElementById('guru');
+  const audio = document.getElementById('guru-audio');
+  let gv = audio.volume;
+  const gOut = setInterval(() => { gv -= 0.03; audio.volume = Math.max(gv, 0); if(gv <= 0) { clearInterval(gOut); audio.pause(); audio.currentTime = 0; } }, 80);
+  setTimeout(() => {
+    guru.classList.remove('active');
+    document.body.classList.remove('med-active');
+  }, 600);
 }
 
 </script>
