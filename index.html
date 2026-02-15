@@ -490,6 +490,21 @@ section { position: relative; z-index: 1; padding: 120px 24px; }
 }
 .podcast-platforms a:hover { border-color: var(--peach); color: var(--peach); }
 
+/* Podcast read-in-language button */
+.podcast-read-btn {
+  display: inline-block; margin-top: 20px; padding: 14px 36px;
+  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 400;
+  letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+  color: var(--text-dark); background: linear-gradient(135deg, var(--peach-light), var(--peach-glow));
+  border-radius: 50px; transition: all 0.4s ease; position: relative; z-index: 2;
+}
+.podcast-read-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(244,168,124,0.4);
+  background: linear-gradient(135deg, var(--peach), var(--peach-light));
+  color: var(--white);
+}
+
 /* ===== FOOTER ===== */
 footer {
   position: relative; z-index: 1;
@@ -568,6 +583,9 @@ body.lang-fi .programs-grid,
 body.lang-fi .testimonials-grid,
 body.lang-fi .safety-grid,
 body.lang-fi .footer-top { display: grid; }
+body.lang-fi a.podcast-read-btn[data-lang="fi"] { display: inline-block; }
+body.lang-fi .test-avatar[data-lang="fi"] { display: flex; }
+body.lang-fi .test-avatar[data-lang="et"] { display: none; }
 </style>
 </head>
 <body>
@@ -876,28 +894,34 @@ body.lang-fi .footer-top { display: grid; }
     <div class="test-card">
       <div class="test-stars">★ ★ ★ ★ ★</div>
       <p class="test-text" data-lang="et">"Shakti programm avas minus ukse, mille olemasolust ma ei teadnudki. Minu suhe oma kehaga, kogu mu elu energia — kõik muutus. Kõige sügavam kogemus, mis mul eales olnud."</p>
-      <p class="test-text" data-lang="fi">"Shakti-ohjelma avasi minussa oven, jonka olemassaolosta en tiennyt. Suhteeni kehooni, koko elämäni energia — kaikki muuttui. Syvin kokemus, mitä minulla on koskaan ollut."</p>
+      <p class="test-text" data-lang="fi">"Shakti-ohjelma herätti minussa jotain, mitä en osannut edes kaivata. Kehoni tuntui ensimmäistä kertaa omaltani. En ole koskaan kokenut mitään yhtä syvää."</p>
       <div class="test-author">
-        <div class="test-avatar">K</div>
-        <div><div class="test-name">Katrin, 38</div><div class="test-role">Shakti — III</div></div>
+        <div class="test-avatar" data-lang="et">K</div>
+        <div data-lang="et"><div class="test-name">Katrin, 38</div><div class="test-role">Shakti — III</div></div>
+        <div class="test-avatar" data-lang="fi">S</div>
+        <div data-lang="fi"><div class="test-name">Sari, 41</div><div class="test-role">Shakti — II</div></div>
       </div>
     </div>
     <div class="test-card">
       <div class="test-stars">★ ★ ★ ★ ★</div>
       <p class="test-text" data-lang="et">"Tulin Shiva trajektoorile, sest tundsin, et olen mehena ära eksinud. Programm andis mulle tagasi minu selgroo. Mitte agressiooni — vaid vaikse jõu."</p>
-      <p class="test-text" data-lang="fi">"Tulin Shiva-ohjelmaan, koska tunsin eksyneeni miehenä. Ohjelma antoi minulle selkärankani takaisin. Ei aggressiota — vaan hiljaista voimaa."</p>
+      <p class="test-text" data-lang="fi">"Olin kadottanut itseni työn ja suorittamisen alle. Shiva-ohjelma palautti minulle hiljaisen voiman — ei kovuuden, vaan läsnäolon. Tiedän nyt, kuka olen miehenä."</p>
       <div class="test-author">
-        <div class="test-avatar">M</div>
-        <div><div class="test-name">Margus, 44</div><div class="test-role">Shiva — V</div></div>
+        <div class="test-avatar" data-lang="et">M</div>
+        <div data-lang="et"><div class="test-name">Margus, 44</div><div class="test-role">Shiva — V</div></div>
+        <div class="test-avatar" data-lang="fi">J</div>
+        <div data-lang="fi"><div class="test-name">Jukka, 47</div><div class="test-role">Shiva — III</div></div>
       </div>
     </div>
     <div class="test-card">
       <div class="test-stars">★ ★ ★ ★ ★</div>
       <p class="test-text" data-lang="et">"Jyoti valguse programm oli nagu kojutulek. 7 kanali avamine andis mulle raami, mida olin otsinud 10 aastat. Valgus ei ole kuskil mujal — see on minu sees."</p>
-      <p class="test-text" data-lang="fi">"Jyoti-valo-ohjelma oli kuin kotiinpaluu. 7 kanavan avaaminen antoi minulle kehyksen, jota olin etsinyt 10 vuotta. Valo ei ole jossain muualla — se on minun sisälläni."</p>
+      <p class="test-text" data-lang="fi">"Etsin vuosia kehystä, joka yhdistäisi kaiken. Jyoti-valo antoi sen. 7 kanavaa avasivat minussa tilan, josta en tiennyt. Valo oli koko ajan sisälläni."</p>
       <div class="test-author">
-        <div class="test-avatar">A</div>
-        <div><div class="test-name">Anneli, 52</div><div class="test-role">Jyoti — I</div></div>
+        <div class="test-avatar" data-lang="et">A</div>
+        <div data-lang="et"><div class="test-name">Anneli, 52</div><div class="test-role">Jyoti — I</div></div>
+        <div class="test-avatar" data-lang="fi">P</div>
+        <div data-lang="fi"><div class="test-name">Päivi, 49</div><div class="test-role">Jyoti — I</div></div>
       </div>
     </div>
   </div>
@@ -935,8 +959,8 @@ body.lang-fi .footer-top { display: grid; }
       <div>
         <div class="safety-title" data-lang="et">Lahku igal ajal</div>
         <div class="safety-title" data-lang="fi">Lähde milloin tahansa</div>
-        <div class="safety-text" data-lang="et">Ligipääs materjalidele jääb alles ka pärast programmi lõppu. Raha tagasi 14 päeva jooksul.</div>
-        <div class="safety-text" data-lang="fi">Pääsy materiaaleihin säilyy myös ohjelman jälkeen. Rahat takaisin 14 päivän sisällä.</div>
+        <div class="safety-text" data-lang="et">Ligipääs materjalidele jääb alles ka pärast programmi lõppu. Sul pole kohustusi — sa valid ise oma tee.</div>
+        <div class="safety-text" data-lang="fi">Pääsy materiaaleihin säilyy myös ohjelman jälkeen. Sinulla ei ole velvoitteita — valitset itse oman tiesi.</div>
       </div>
     </div>
     <div class="safety-item">
@@ -964,6 +988,8 @@ body.lang-fi .footer-top { display: grid; }
       <a href="#">Apple Podcasts</a>
       <a href="#">YouTube</a>
     </div>
+    <a href="#" class="podcast-read-btn" data-lang="et">📖 Loe podcasti eesti keeles</a>
+    <a href="#" class="podcast-read-btn" data-lang="fi">📖 Lue podcast suomeksi</a>
   </div>
 </section>
 
