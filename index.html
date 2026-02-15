@@ -51,7 +51,7 @@ body {
 
 /* ===== NAV ===== */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100000;
   padding: 20px 48px;
   display: flex; justify-content: space-between; align-items: center;
   transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
@@ -214,15 +214,15 @@ section { position: relative; z-index: 1; padding: 120px 24px; }
   pointer-events: none;
 }
 .guru-back {
-  position: fixed; top: 24px; left: 24px; z-index: 99999;
+  position: fixed; top: 72px; left: 24px; z-index: 99999;
   background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.5); padding: 10px 20px;
+  color: rgba(255,255,255,0.5); padding: 8px 16px;
   border-radius: 50px; font-family: 'Outfit', sans-serif;
-  font-size: 12px; letter-spacing: 1.5px; cursor: pointer;
-  transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; letter-spacing: 1px; cursor: pointer;
+  transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
 }
 .guru-back:hover { border-color: rgba(244,168,124,0.3); color: rgba(255,255,255,0.7); }
-.guru-layout { max-width: 860px; margin: 0 auto; position: relative; z-index: 2; text-align: center; padding: 80px 24px 60px; }
+.guru-layout { max-width: 860px; margin: 0 auto; position: relative; z-index: 2; text-align: center; padding: 110px 24px 60px; }
 .guru-photo-wrap {
   width: 220px; height: 280px; margin: 0 auto 40px; position: relative;
   border-radius: 120px 120px 30px 30px; overflow: hidden;
@@ -600,15 +600,16 @@ body.med-active { overflow: hidden !important; position: fixed !important; width
   100% { opacity: 0; transform: translateY(-20vh) scale(1.2); }
 }
 .med-timer {
-  position: absolute; top: 24px; right: 28px;
+  position: absolute; top: 74px; right: 28px;
   font-family: 'Outfit', sans-serif; font-size: 13px;
   color: rgba(255,255,255,0.2); letter-spacing: 1px;
+  text-align: right;
 }
 .med-phase-label {
-  position: absolute; top: 24px; left: 28px;
-  font-family: 'Outfit', sans-serif; font-size: 11px;
+  position: absolute; top: 94px; right: 28px;
+  font-family: 'Outfit', sans-serif; font-size: 10px;
   letter-spacing: 2.5px; text-transform: uppercase;
-  color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.12); text-align: right;
 }
 .med-text-container {
   position: relative; z-index: 2; text-align: center;
@@ -1199,6 +1200,8 @@ body.lang-fi .test-avatar[data-lang="et"] { display: none; }
 
   <!-- FULLSCREEN MEDITATION -->
   <div id="med-overlay" class="med-overlay">
+    <a href="javascript:void(0)" onclick="closeMeditation()" class="guru-back" data-lang="et">← Tagasi</a>
+    <a href="javascript:void(0)" onclick="closeMeditation()" class="guru-back" data-lang="fi">← Takaisin</a>
     <audio id="med-audio" loop preload="auto" src="meditation-audio.mp3"></audio>
     <div class="med-particles" id="med-particles"></div>
     <div class="med-timer" id="med-timer"></div>
@@ -1721,6 +1724,17 @@ function skipToNext() {
   } else {
     playMedText();
   }
+}
+
+function closeMeditation() {
+  clearTimeout(medTimeout);
+  clearInterval(medTimerInterval);
+  const audio = document.getElementById('med-audio');
+  let vol = audio.volume;
+  const fadeOut = setInterval(() => { vol -= 0.03; audio.volume = Math.max(vol, 0); if(vol <= 0) { clearInterval(fadeOut); audio.pause(); audio.currentTime = 0; } }, 80);
+  const overlay = document.getElementById('med-overlay');
+  overlay.classList.remove('active');
+  document.body.classList.remove('med-active');
 }
 
 function endMeditation() {
