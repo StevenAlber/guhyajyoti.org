@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Täname! | Kiitos! — GUHYAJYOTI</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --peach: #F4A87C;
+  --peach-light: #FCD4BC;
+  --peach-glow: #FFF0E6;
+  --coral: #E8876F;
+  --rose: #D4708F;
+  --lavender: #B8A9D4;
+  --lavender-soft: #E8E0F4;
+  --sage: #8CB89C;
+  --gold: #C9A355;
+  --cream: #FFFCF7;
+  --warm: #FFF8F2;
+  --sand: #F5EDE4;
+  --text-dark: #2C2434;
+  --text-medium: #5A4E66;
+  --text-soft: #8A7E96;
+  --white: #FFFFFF;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--warm) 0%, var(--cream) 55%, var(--lavender-soft) 100%);
+  color: var(--text-dark);
+  font-family: 'Outfit', sans-serif;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: ''; position: absolute; top: -10%; right: -5%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(244,168,124,0.15) 0%, transparent 70%);
+  border-radius: 50%; animation: glow 8s ease-in-out infinite alternate;
+}
+body::after {
+  content: ''; position: absolute; bottom: -10%; left: -5%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(184,169,212,0.15) 0%, transparent 70%);
+  border-radius: 50%; animation: glow 10s ease-in-out 2s infinite alternate;
+}
+@keyframes glow { from { transform: scale(1); } to { transform: scale(1.15) translate(20px,-15px); } }
+
+.container {
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400; font-size: 20px; letter-spacing: 5px;
+  color: var(--text-dark); margin-bottom: 48px;
+}
+.logo span { color: var(--peach); }
+
+.icon-circle {
+  width: 100px; height: 100px;
+  margin: 0 auto 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--peach-glow), var(--lavender-soft));
+  border: 1.5px solid rgba(244,168,124,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+h1 em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--peach), var(--coral), var(--rose));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-soft);
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+}
+
+.message-box {
+  background: var(--white);
+  border: 1.5px solid rgba(244,168,124,0.12);
+  border-radius: 22px;
+  padding: 36px 32px;
+  margin-bottom: 32px;
+  text-align: left;
+  line-height: 1.85;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-medium);
+  box-shadow: 0 16px 60px rgba(44,36,52,0.06);
+}
+
+.message-box p { margin-bottom: 16px; }
+.message-box p:last-child { margin-bottom: 0; }
+
+.highlight {
+  color: var(--coral);
+  font-weight: 500;
+}
+
+.steps {
+  text-align: left;
+  padding-left: 20px;
+  margin: 16px 0;
+}
+
+.steps li {
+  margin-bottom: 8px;
+  color: var(--text-medium);
+  padding: 3px 0;
+}
+
+.steps li::marker {
+  color: var(--peach);
+}
+
+.telegram-link {
+  display: inline-block;
+  padding: 15px 40px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--peach), var(--coral));
+  border-radius: 50px;
+  transition: all 0.4s ease;
+  margin-bottom: 16px;
+}
+
+.telegram-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(232,135,111,0.35);
+}
+
+.back-link {
+  display: block;
+  margin-top: 16px;
+  color: var(--text-soft);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.back-link:hover { color: var(--coral); }
+
+.lang-switch {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 0;
+  border: 1.5px solid rgba(44,36,52,0.12);
+  border-radius: 50px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.lang-btn {
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text-soft);
+  transition: all 0.3s;
+  font-family: 'Outfit', sans-serif;
+}
+
+.lang-btn.active {
+  background: linear-gradient(135deg, var(--peach), var(--coral));
+  color: var(--white);
+}
+
+[data-lang="fi"] { display: none; }
+</style>
+</head>
+<body>
+
+<div class="lang-switch">
+  <button class="lang-btn active" onclick="setLang('et')">ET</button>
+  <button class="lang-btn" onclick="setLang('fi')">FI</button>
+</div>
+
+<div class="container">
+  <div class="logo">GUHYA<span>JYOTI</span></div>
+  <div class="icon-circle">✦</div>
+
+  <!-- EESTI -->
+  <div data-lang="et">
+    <h1>Täname sind, <em>teekaaslane</em></h1>
+    <p class="subtitle">Sinu teekond peidetud valguse poole on alanud</p>
+
+    <div class="message-box">
+      <p>Sinu makse on edukalt vastu võetud. Oled teinud olulise sammu oma teadvuse teekonna avamisel.</p>
+      <p><span class="highlight">Mis juhtub järgmisena?</span></p>
+      <p>Saad oma programmi materjalid isiklikult kätte <span class="highlight">24 tunni jooksul</span>. Sri Vivek Ananda meeskond valmistab sinu jaoks personaalse teejuhi, mis sisaldab:</p>
+      <ol class="steps">
+        <li>Ligipääs programmi materjalidele</li>
+        <li>Personaalne juhend alustamiseks</li>
+        <li>Ühendus Telegram tugikanaliga</li>
+      </ol>
+      <p>Jälgi meid Telegramis, et olla kursis uudiste ja praktikajuhenditega.</p>
+    </div>
+
+    <a href="https://t.me/guhyajyoti" class="telegram-link" target="_blank">✦ Jälgi Telegramis</a>
+    <a href="https://guhyajyoti.org" class="back-link">← Tagasi avalehele</a>
+  </div>
+
+  <!-- SUOMI -->
+  <div data-lang="fi">
+    <h1>Kiitos, <em>matkatoveri</em></h1>
+    <p class="subtitle">Matkasi kätkettyä valoa kohti on alkanut</p>
+
+    <div class="message-box">
+      <p>Maksusi on vastaanotettu onnistuneesti. Olet ottanut tärkeän askeleen tietoisuusmatkallasi.</p>
+      <p><span class="highlight">Mitä tapahtuu seuraavaksi?</span></p>
+      <p>Saat ohjelmasi materiaalit henkilökohtaisesti <span class="highlight">24 tunnin kuluessa</span>. Sri Vivek Anandan tiimi valmistelee sinulle henkilökohtaisen oppaan, joka sisältää:</p>
+      <ol class="steps">
+        <li>Pääsy ohjelman materiaaleihin</li>
+        <li>Henkilökohtainen aloitusopas</li>
+        <li>Yhteys Telegram-tukikanavaan</li>
+      </ol>
+      <p>Seuraa meitä Telegramissa pysyäksesi ajan tasalla uutisista ja harjoitusoppaista.</p>
+    </div>
+
+    <a href="https://t.me/guhyajyoti" class="telegram-link" target="_blank">✦ Seuraa Telegramissa</a>
+    <a href="https://guhyajyoti.org" class="back-link">← Takaisin etusivulle</a>
+  </div>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    el.style.display = el.dataset.lang === lang ? 'block' : 'none';
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+  });
+}
+</script>
+
+</body>
+</html>
