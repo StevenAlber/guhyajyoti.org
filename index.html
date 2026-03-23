@@ -80,7 +80,7 @@ body {
 
 /* ===== NAV ===== */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100000;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   padding: 20px 48px;
   display: flex; justify-content: space-between; align-items: center;
   transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
@@ -88,6 +88,7 @@ nav {
 nav.scrolled {
   background: rgba(255,252,247,0.94);
   backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   padding: 12px 48px;
   box-shadow: 0 4px 30px rgba(44,36,52,0.06);
 }
@@ -231,7 +232,7 @@ section { position: relative; z-index: 1; padding: 120px 24px; }
 /* ===== GURU — DARK IMMERSIVE OVERLAY ===== */
 .about-guru {
   display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: 99998; background: #0a0a12;
+  z-index: 200000; background: #0a0a12;
   overflow-y: auto; overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
@@ -243,7 +244,7 @@ section { position: relative; z-index: 1; padding: 120px 24px; }
   pointer-events: none;
 }
 .guru-back {
-  position: fixed; top: 72px; left: 24px; z-index: 99999;
+  position: fixed; top: 72px; left: 24px; z-index: 200002;
   background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
   color: rgba(255,255,255,0.5); padding: 8px 16px;
   border-radius: 50px; font-family: 'Outfit', sans-serif;
@@ -610,7 +611,7 @@ footer {
 /* ===== IMMERSIVE MEDITATION ===== */
 .med-overlay {
   display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: 99999; background: #0a0a12;
+  z-index: 200001; background: #0a0a12;
   flex-direction: column; align-items: center; justify-content: center;
   transition: background 8s ease;
   overflow: hidden;
@@ -736,7 +737,7 @@ body.med-active { overflow: hidden !important; position: fixed !important; width
 /* ===== HIDE LANG CONTENT ===== */
 [data-lang="fi"] { display: none; }
 body.lang-fi [data-lang="et"] { display: none; }
-body.lang-fi [data-lang="fi"] { display: block; }
+body.lang-fi [data-lang="fi"] { display: initial; }
 body.lang-fi span[data-lang="fi"],
 body.lang-fi em[data-lang="fi"],
 body.lang-fi div[data-lang="fi"],
@@ -1371,7 +1372,7 @@ document.querySelectorAll('.program-card,.test-card,.channel-row,.urgency-inner,
 
 // Language switcher
 function setLang(lang) {
-  document.body.className = lang === 'fi' ? 'lang-fi' : '';
+  document.body.classList.toggle('lang-fi', lang === 'fi');
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
   });
@@ -1503,7 +1504,8 @@ function showQuizResult() {
   const r_et = channelResults.et[maxI];
   const r_fi = channelResults.fi[maxI];
   document.getElementById('quiz-result-icon').textContent = channelIcons[maxI];
-  document.getElementById('quiz-result-channel').textContent = channelNames[maxI] + ' — ' + (maxI+1) + '. kanal';
+  const isFi = document.body.classList.contains('lang-fi');
+  document.getElementById('quiz-result-channel').textContent = channelNames[maxI] + ' — ' + (maxI+1) + (isFi ? '. kanava' : '. kanal');
   document.getElementById('quiz-result-title-et').textContent = r_et.title;
   document.getElementById('quiz-result-title-fi').textContent = r_fi.title;
   document.getElementById('quiz-result-desc-et').textContent = r_et.desc;
